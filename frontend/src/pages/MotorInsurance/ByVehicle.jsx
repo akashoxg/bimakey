@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Car, Truck, Bike, Phone, ArrowRight, ShieldCheck, Info } from 'lucide-react';
+import { Car, Truck, Bike, Phone, ArrowRight, Info } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import BookingModal from '../../components/consultation/BookingModal';
-import { motorPlans } from '../../data/motorPlans';
 
 const vehicleTypes = [
   { id: 'hatchback', icon: Car, label: 'Hatchback', examples: 'Maruti Swift, i20, Baleno', premiumRange: '₹7,500–9,000/yr', recommended: 'HDFC Ergo / Bajaj Allianz', addOns: 'Zero depreciation (must), engine protection, roadside assistance', tip: 'Hatchbacks are most affordable to insure. Always add zero depreciation for the first 3–5 years.', color: 'bg-blue-50 text-blue-600' },

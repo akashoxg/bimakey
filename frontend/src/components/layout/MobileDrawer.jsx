@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, Phone, Shield } from 'lucide-react';
 import { useState } from 'react';
-import { NAV_LINKS, BRAND, getWhatsAppUrl, getPhoneUrl } from '../../utils/constants';
+import { NAV_LINKS, BRAND, getWhatsAppUrl } from '../../utils/constants';
 
 const MobileDrawer = ({ isOpen, onClose, onBooking }) => {
   const [expandedItem, setExpandedItem] = useState(null);

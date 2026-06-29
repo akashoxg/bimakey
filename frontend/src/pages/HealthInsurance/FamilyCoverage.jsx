@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import SectionHeader from '../../components/shared/SectionHeader';
 import ConsultCTA from '../../components/consultation/ConsultCTA';
-import { formatCurrency } from '../../utils/formatCurrency';
 
 const floaterVsIndividual = [
   { feature: 'Coverage Type', floater: 'Shared sum insured for entire family', individual: 'Separate sum insured per person' },

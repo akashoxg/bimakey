@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { List, X, ChevronRight } from 'lucide-react';
+import { List, X } from 'lucide-react';
 
 /**
  * Table of Contents component for long-form content pages

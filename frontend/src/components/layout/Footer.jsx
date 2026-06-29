@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Star, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Shield, Star, Phone, Mail, MessageCircle } from 'lucide-react';
 import { BRAND, getWhatsAppUrl } from '../../utils/constants';
 
 const footerSections = [

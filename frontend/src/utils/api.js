@@ -15,9 +15,6 @@ const FUNCTIONS_URL = isSupabaseConfigured ? `${SUPABASE_URL}/functions/v1` : ''
 // Legacy API base URL (Express backend) - use relative path for Vite proxy
 const LEGACY_API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
-// Check if legacy API is available
-const isLegacyApiConfigured = Boolean(LEGACY_API_BASE_URL);
-
 // Determine which API to use - prioritize Supabase Edge Functions if configured, else use legacy API
 const getApiUrl = (functionName) => {
   // Use Supabase Edge Functions if configured
@@ -83,7 +80,7 @@ export const submitLead = async (leadData) => {
       const existing = JSON.parse(localStorage.getItem('bimakey_pending_leads') || '[]');
       existing.push({ ...leadData, id: `local_${Date.now()}`, timestamp: new Date().toISOString() });
       localStorage.setItem('bimakey_pending_leads', JSON.stringify(existing));
-    } catch (e) {
+    } catch (_e) {
       // Ignore localStorage errors
     }
     return {
@@ -137,7 +134,7 @@ export const submitClaimForm = async (formData) => {
       const existing = JSON.parse(localStorage.getItem('bimakey_pending_claims') || '[]');
       existing.push({ ...formData, id: `claim_${Date.now()}`, timestamp: new Date().toISOString() });
       localStorage.setItem('bimakey_pending_claims', JSON.stringify(existing));
-    } catch (e) {
+    } catch (_e) {
       // Ignore localStorage errors
     }
     return {
@@ -149,74 +146,6 @@ export const submitClaimForm = async (formData) => {
         claimType: formData.claimType || 'general',
       },
       fallbackUrl,
-    };
-  }
-};
-
-/**
- * Chat with AI powered by GLM-5.1
- * @param {string} message - User's message
- * @param {Object} context - Context for the conversation
- * @returns {Promise<{success: boolean, response?: string, error?: string}>}
- */
-export const chatWithAI = async (message, context = {}) => {
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
-
-    const response = await fetch('/api/ai/chat', {
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify({ message, context }),
-      signal: controller.signal,
-    });
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`Server returned status ${response.status}`);
-    }
-
-    const result = await response.json();
-    return {
-      success: result.success,
-      response: result.response,
-      fallback: result.fallback,
-    };
-  } catch (error) {
-    console.error('AI Chat Error:', error.message);
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
-};
-
-/**
- * Check AI service health
- * @returns {Promise<{success: boolean, status?: string}>}
- */
-export const checkAIHealth = async () => {
-  try {
-    const response = await fetch('/api/ai/health', {
-      method: 'GET',
-      headers: getHeaders(),
-    });
-    
-    if (!response.ok) {
-      throw new Error('AI service unavailable');
-    }
-
-    const data = await response.json();
-    return {
-      success: data.success,
-      status: data.status,
-      model: data.model,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error.message,
     };
   }
 };

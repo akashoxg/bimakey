@@ -846,7 +846,6 @@ const ClaimAssistance = () => {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schemas[selectedClaimType?.value] || schemas['other']),

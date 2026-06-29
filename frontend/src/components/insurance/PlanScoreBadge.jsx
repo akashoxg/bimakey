@@ -22,7 +22,10 @@ const PlanScoreBadge = ({ score, isRecommended, breakdown }) => {
             </div>
             
             <div className="flex flex-col">
-              <span className={`font-semibold ${color.split(' ')[0]}`}>{label}</span>
+              <div className="flex items-center gap-1">
+                <Icon className="w-4 h-4" />
+                <span className={`font-semibold ${color.split(' ')[0]}`}>{label}</span>
+              </div>
               {isRecommended && (
                 <span className="text-xs font-medium text-brand-teal bg-brand-teal-light px-2 py-0.5 rounded-full mt-1 w-max">
                   Recommended

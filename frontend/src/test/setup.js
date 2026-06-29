@@ -1,4 +1,4 @@
-import { expect, afterEach, vi } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -14,24 +14,12 @@ vi.mock('import.meta.env', () => ({
 
 // Mock framer-motion
 vi.mock('framer-motion', () => ({
-  motion: {
-    div: 'div',
-    section: 'section',
-    button: 'button',
-    span: 'span',
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    p: 'p',
-    nav: 'nav',
-    aside: 'aside',
-  },
+  motion: vi.fn((component) => component),
   AnimatePresence: ({ children }) => children,
   useAnimation: () => ({
     start: vi.fn(),
   }),
   useInView: () => true,
-  motion: vi.fn((component) => component),
 }));
 
 // Mock react-router-dom

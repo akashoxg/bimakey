@@ -35,8 +35,13 @@ const createLead = async (req, res, next) => {
       };
     }
 
-    // Send email notification to admin asynchronously
-    sendLeadNotification(lead).catch(err => console.error('Failed to send email notification:', err));
+    // Send email notification to admin
+    const emailResult = await sendLeadNotification(lead);
+    if (emailResult.sent) {
+      console.log('✅ Email sent to Jitendrapoc@gmail.com:', emailResult.messageId);
+    } else {
+      console.error('❌ Failed to send email:', emailResult.error || emailResult.reason);
+    }
 
     // Send WhatsApp notification if consented
     if (whatsappConsent !== false) {
@@ -96,9 +101,12 @@ const submitClaimForm = async (req, res, next) => {
     }
 
     // Send formatted claim notification email to Jitendrapoc@gmail.com
-    sendClaimNotification(req.body).catch(err => 
-      console.error('Failed to send claim notification email:', err)
-    );
+    const emailResult = await sendClaimNotification(req.body);
+    if (emailResult.sent) {
+      console.log('✅ Claim email sent to Jitendrapoc@gmail.com:', emailResult.messageId);
+    } else {
+      console.error('❌ Failed to send claim email:', emailResult.error || emailResult.reason);
+    }
 
     res.status(201).json({
       success: true,

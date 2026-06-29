@@ -4,7 +4,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import PlanScoreBadge from './PlanScoreBadge';
 import { formatNumber } from '../../utils/formatCurrency';
 
-const PlanRankTable = ({ plans, category }) => {
+const PlanRankTable = ({ plans, category: _category }) => {
   const [sortBy, setSortBy] = useState('rank');
   const [filterInsurer, setFilterInsurer] = useState('all');
 

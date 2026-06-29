@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BookOpen, AlertTriangle, CheckCircle, Info, Shield } from 'lucide-react';
+import { BookOpen, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
 import SectionHeader from '../../components/shared/SectionHeader';
 import ConsultCTA from '../../components/consultation/ConsultCTA';

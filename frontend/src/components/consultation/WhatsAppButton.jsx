@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
 import { getWhatsAppUrl } from '../../utils/constants';
 
 const WhatsAppButton = ({ context = 'general' }) => {

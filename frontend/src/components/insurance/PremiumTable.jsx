@@ -1,5 +1,4 @@
 import { Info } from 'lucide-react';
-import * as Tooltip from '@radix-ui/react-tooltip';
 import { formatCurrency } from '../../utils/formatCurrency';
 
 const PremiumTable = ({ plans }) => {

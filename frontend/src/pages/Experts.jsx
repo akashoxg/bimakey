@@ -198,7 +198,7 @@ const Experts = () => {
               { icon: Clock, label: 'Combined Experience', value: '48+ Years' },
               { icon: Award, label: 'Families Helped', value: '6,000+' },
               { icon: Heart, label: 'Zero Commission', value: '100%' },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <div
                 key={stat.label}
                 className="bg-white rounded-xl p-4 text-center shadow-soft border border-gray-100"

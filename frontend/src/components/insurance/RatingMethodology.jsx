@@ -28,7 +28,7 @@ const RatingMethodology = ({ methodology }) => {
           variants={staggerContainer}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {methodology.criteria.map((item, index) => {
+          {methodology.criteria.map((item) => {
             const Icon = iconMap[item.name] || Target;
             
             return (

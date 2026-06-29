@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Breadcrumb from '../components/shared/Breadcrumb';
-import SectionHeader from '../components/shared/SectionHeader';
 import { BRAND } from '../utils/constants';
 
 const PrivacyPolicy = () => {

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ShieldCheck, Heart, Users, TrendingUp, Award, Scale, Phone, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Heart, Award, Scale, Phone, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/shared/Breadcrumb';

@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
 import { BRAND, getWhatsAppUrl, INSURANCE_TYPES, NAV_LINKS } from '../utils/constants';
 
 describe('Brand Constants', () => {
