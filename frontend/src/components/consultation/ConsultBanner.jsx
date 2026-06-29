@@ -16,17 +16,17 @@ const ConsultBanner = () => {
         initial="hidden"
         animate={controls}
         variants={fadeInUp}
-        className="py-16 md:py-20 relative overflow-hidden"
+        className="py-12 sm:py-14 md:py-16 lg:py-20 relative overflow-hidden"
       >
         {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-teal via-brand-teal-hover to-brand-navy" aria-hidden="true" />
         <div className="absolute inset-0 dot-grid opacity-10" aria-hidden="true" />
 
         <div className="max-w-container mx-auto px-4 md:px-8 text-center relative z-10">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4" style={{ textWrap: 'balance' }}>
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4" style={{ textWrap: 'balance' }}>
             Still confused? Book a free consultation now — Zero&nbsp;Charge, Zero&nbsp;Spam.
           </h2>
-          <p className="text-white/60 mb-8 max-w-xl mx-auto">
+          <p className="text-white/60 mb-6 sm:mb-8 max-w-xl mx-auto text-sm sm:text-base">
             Our experts will analyze your needs and recommend the best insurance plans within 24 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

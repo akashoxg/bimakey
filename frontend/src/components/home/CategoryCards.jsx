@@ -63,7 +63,7 @@ const CategoryCards = () => {
           initial="hidden"
           animate={controls}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8"
         >
           {categories.map((category) => (
             <motion.div key={category.id} variants={fadeInUp}>
@@ -72,8 +72,8 @@ const CategoryCards = () => {
                 className={`block h-full bg-white rounded-2xl p-8 shadow-soft ${category.hoverShadow} ${category.accentClass} transition-[box-shadow,transform,border-color] duration-300 group focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 outline-none hover:-translate-y-1`}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <div className={`w-14 h-14 rounded-xl ${category.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <category.icon className={`w-7 h-7 ${category.iconColor}`} aria-hidden="true" />
+                  <div className={`w-12 h-12 sm:w-14 rounded-xl ${category.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <category.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${category.iconColor}`} aria-hidden="true" />
                   </div>
                   <span className="text-xs font-data font-semibold text-brand-text-secondary bg-gray-50 px-3 py-1.5 rounded-full">
                     {category.stat}

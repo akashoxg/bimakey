@@ -8,7 +8,7 @@ const ComparisonBanner = () => {
   const { ref, controls } = useScrollReveal();
 
   return (
-    <section className="py-16 md:py-24 lg:py-28 bg-brand-bg-subtle relative overflow-hidden">
+    <section className="py-12 sm:py-14 md:py-16 lg:py-28 bg-brand-bg-subtle relative overflow-hidden">
       {/* Background mesh */}
       <div className="absolute inset-0 bg-mesh-light" aria-hidden="true" />
       <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />

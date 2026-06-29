@@ -12,7 +12,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden hero-mesh min-h-[90dvh] flex items-center bg-brand-bg-primary">
+      <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28 overflow-hidden hero-mesh min-h-[85dvh] sm:min-h-[90dvh] flex items-center bg-brand-bg-primary">
         {/* Subtle dot grid overlay */}
         <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
 
@@ -53,14 +53,14 @@ const HeroSection = () => {
                 <span>India&rsquo;s Only 100% Unbiased Platform</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-brand-navy tracking-tight leading-[1.1] mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-brand-navy tracking-tight leading-[1.05] sm:leading-[1.1] mb-4 sm:mb-6">
                 Find the Right Insurance.<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-amber">
                   Not the Highest Commission.
                 </span>
               </h1>
 
-              <p className="text-brand-text-secondary text-lg md:text-xl mb-10 leading-relaxed max-w-xl font-body">
+              <p className="text-brand-text-secondary text-base sm:text-lg md:text-xl mb-8 sm:mb-10 leading-relaxed max-w-xl font-body">
                 We compare 150+ health and term plans using a transparent rating methodology. No spam calls. No hidden fees. Just expert advice.
               </p>
 

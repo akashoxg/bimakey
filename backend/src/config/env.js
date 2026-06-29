@@ -41,6 +41,10 @@ export const config = {
   // Rate Limiting
   RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10) || 60 * 60 * 1000, // 1 hour
   RATE_LIMIT_MAX_REQUESTS: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS, 10) || 5,
+  
+  // NVIDIA NIM API Configuration
+  NVIDIA_NIM_API_KEY: process.env.NVIDIA_NIM_API_KEY,
+  MODEL: process.env.MODEL || 'nvidia_nim/z-ai/glm-5.1',
 };
 
 export default config;

@@ -62,22 +62,22 @@ const Contact = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Hero */}
-      <section className="pt-28 pb-12 md:pt-36 md:pb-16 bg-gradient-to-b from-brand-teal-light/30 to-transparent">
-        <div className="max-w-container mx-auto px-4 md:px-8">
+      <section className="pt-24 pb-8 sm:pt-28 md:pt-36 sm:pb-12 md:pb-16 bg-gradient-to-b from-brand-teal-light/30 to-transparent">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-8">
           <Breadcrumb items={[{ label: 'Contact Us', href: '/contact-us' }]} />
-          <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-navy mb-4">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-brand-navy mb-3 sm:mb-4">
             Get in Touch
           </h1>
-          <p className="text-xl text-brand-text-secondary max-w-2xl leading-relaxed">
-            Book a free consultation with our insurance experts. We’ll help you find the right plan in under 30 minutes.
+          <p className="text-base sm:text-lg md:text-xl text-brand-text-secondary max-w-2xl leading-relaxed">
+            Book a free consultation with our insurance experts. We'll help you find the right plan in under 30 minutes.
           </p>
         </div>
       </section>
 
       {/* Contact Content */}
-      <section className="pb-20">
-        <div className="max-w-container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+      <section className="pb-12 md:pb-20">
+        <div className="max-w-container mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 xl:gap-16">
             {/* Left — Contact Info */}
             <div className="lg:col-span-2">
               <h2 className="font-display font-bold text-2xl text-brand-navy mb-6">
@@ -112,12 +112,12 @@ const Contact = () => {
               </div>
 
               {/* Online Platform Badge */}
-              <div className="mt-8 rounded-2xl overflow-hidden border border-brand-teal/20 bg-brand-teal-light/30 p-6 flex items-center gap-4 text-brand-navy">
-                <div className="w-12 h-12 rounded-xl bg-brand-teal flex items-center justify-center text-white shrink-0">
-                  <MapPin className="w-6 h-6" />
+              <div className="mt-6 sm:mt-8 rounded-2xl overflow-hidden border border-brand-teal/20 bg-brand-teal-light/30 p-5 sm:p-6 flex items-start sm:items-center gap-4 text-brand-navy">
+                <div className="w-10 h-10 sm:w-12 rounded-xl bg-brand-teal flex items-center justify-center text-white shrink-0">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-base">Operating from {BRAND.address}</h4>
+                  <h4 className="font-display font-bold text-sm sm:text-base">Operating from {BRAND.address}</h4>
                   <p className="text-xs text-brand-text-secondary mt-0.5">Delivering 100% unbiased advisory and lifelong claims support across India.</p>
                 </div>
               </div>
@@ -125,7 +125,7 @@ const Contact = () => {
 
             {/* Right — Booking Form */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-2xl shadow-card border border-gray-100 p-8 md:p-10">
+              <div className="bg-white rounded-2xl shadow-card border border-gray-100 p-5 sm:p-6 md:p-8 lg:p-10">
                 <h2 className="font-display font-bold text-2xl text-brand-navy mb-2">
                   Book Free Consultation
                 </h2>

@@ -16,8 +16,8 @@ const Testimonials = () => {
   const repeatedTestimonials = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
-    <section className="py-20 md:py-28 bg-brand-white overflow-hidden">
-      <div className="max-w-container mx-auto px-4 md:px-8 mb-12">
+    <section className="py-14 sm:py-16 md:py-20 lg:py-28 bg-brand-white overflow-hidden">
+      <div className="max-w-container mx-auto px-4 sm:px-6 md:px-8 mb-8 sm:mb-10 md:mb-12">
         <SectionHeader
           eyebrow="Real Stories"
           title={
@@ -44,7 +44,7 @@ const Testimonials = () => {
             return (
               <div
                 key={index}
-                className="w-[320px] md:w-[380px] flex-shrink-0"
+                className="w-[300px] sm:w-[320px] md:w-[380px] flex-shrink-0"
               >
                 <div className="bg-white p-7 rounded-2xl shadow-soft hover:shadow-card transition-all duration-300 h-full border border-gray-100 flex flex-col relative overflow-hidden group hover:-translate-y-1">
                   <div className={`absolute top-0 left-0 right-0 h-1 ${colors.bg} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} aria-hidden="true" />

@@ -38,7 +38,7 @@ const MobileDrawer = ({ isOpen, onClose, onBooking }) => {
                 <img 
                   src="/logo.png" 
                   alt={`${BRAND.name} Logo`} 
-                  className="h-12 w-auto object-contain drop-shadow-sm" 
+                  className="h-10 sm:h-12 w-auto object-contain drop-shadow-sm" 
                 />
                 <span className="font-display font-extrabold text-xl tracking-tight text-brand-navy">
                   {BRAND.name}
@@ -115,7 +115,7 @@ const MobileDrawer = ({ isOpen, onClose, onBooking }) => {
             </div>
 
             {/* Bottom CTAs */}
-            <div className="p-4 border-t border-brand-border space-y-3">
+            <div className="p-4 border-t border-brand-border space-y-2.5 sm:space-y-3">
               {/* Claim Assistance Button */}
               <Link
                 to="/claim-assistance"

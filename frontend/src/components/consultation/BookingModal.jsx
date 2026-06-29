@@ -81,20 +81,20 @@ const BookingModal = ({ isOpen, onClose, source = 'navbar' }) => {
           />
 
           {/* Modal Container */}
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 md:px-0 pointer-events-none">
+          <div className="fixed inset-0 z-50 flex items-center sm:items-center justify-center px-3 sm:px-4 md:px-0 pointer-events-none">
             {/* Modal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="w-full max-w-lg bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto pointer-events-auto"
+              className="w-full max-w-lg bg-white rounded-xl sm:rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto pointer-events-auto mx-2 sm:mx-0"
               role="dialog"
               aria-modal="true"
               aria-label="Book a free consultation"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-brand-border">
+              <div className="flex items-center justify-between p-4 sm:p-5 md:p-6 border-b border-brand-border">
                 <div>
                   <h2 className="font-display font-bold text-xl text-brand-navy">
                     Book Free Consultation

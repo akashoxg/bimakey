@@ -39,20 +39,20 @@ const Navbar = () => {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="w-full max-w-[98%] mx-auto px-2 sm:px-6">
-          <div className="flex items-center justify-between h-20 md:h-24 gap-4">
+        <div className="w-full max-w-[98%] mx-auto px-3 sm:px-4 md:px-6">
+          <div className="flex items-center justify-between h-16 md:h-20 lg:h-24 gap-2 md:gap-4">
             {/* Left: Logo + Brand Name on extreme left */}
             <Link
               to="/"
-              className="flex items-center gap-2.5 group"
+              className="flex items-center gap-1.5 md:gap-2.5 group flex-shrink-0"
               aria-label={`${BRAND.name} — Home`}
             >
               <img 
                 src="/logo.png" 
                 alt={`${BRAND.name} Logo`} 
-                className="h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow-md" 
+                className="h-9 w-9 sm:h-10 sm:w-10 md:h-12 lg:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow-md" 
               />
-              <span className="font-display font-extrabold text-2xl md:text-3xl tracking-tight text-slate-900">
+              <span className="font-display font-extrabold text-base sm:text-lg md:text-xl lg:text-2xl tracking-tight text-slate-900">
                 {BRAND.name}
               </span>
             </Link>

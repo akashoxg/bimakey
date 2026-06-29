@@ -35,7 +35,7 @@ const HowItWorks = () => {
 
   return (
     <>
-      <section className="py-20 md:py-28 bg-gray-50/80 border-y border-gray-100">
+      <section className="py-14 sm:py-16 md:py-20 lg:py-28 bg-gray-50/80 border-y border-gray-100">
         <div className="max-w-container mx-auto px-4 md:px-8">
           <SectionHeader
             eyebrow="The Process"
@@ -71,12 +71,12 @@ const HowItWorks = () => {
                     {/* Content card */}
                     <div className={`md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-0' : 'md:pl-0'}`}>
                       <div className="bg-white rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card transition-shadow duration-300 border border-gray-100 group">
-                        <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-brand-teal-light rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-teal transition-colors duration-300">
-                            <step.icon className="w-6 h-6 text-brand-teal group-hover:text-white transition-colors duration-300" aria-hidden="true" />
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="w-10 h-10 sm:w-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-brand-teal-light group-hover:bg-brand-teal transition-colors duration-300">
+                            <step.icon className="w-5 h-5 sm:w-6 sm:h-6 text-brand-teal group-hover:text-white transition-colors duration-300" aria-hidden="true" />
                           </div>
                           <div className="min-w-0">
-                            <h3 className="font-display font-bold text-xl text-brand-navy mb-2">
+                            <h3 className="font-display font-bold text-lg sm:text-xl text-brand-navy mb-1.5 sm:mb-2">
                               {step.title}
                             </h3>
                             <p className="text-brand-text-secondary leading-relaxed">
@@ -105,7 +105,7 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-12 text-center"
+              className="mt-8 sm:mt-10 md:mt-12 text-center"
             >
               <button
                 type="button"

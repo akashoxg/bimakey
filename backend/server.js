@@ -13,6 +13,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import morgan from 'morgan';
 import connectDB from './src/config/db.js';
 import leadRoutes from './src/routes/leadRoutes.js';
+import aiRoutes from './src/routes/aiRoutes.js';
 import { errorHandler, notFound } from './src/middleware/error.js';
 import { config } from './src/config/env.js';
 
@@ -64,6 +65,7 @@ app.use('/api/leads', leadLimiter);
 
 // API Routes
 app.use('/api/leads', leadRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Serve static files from frontend build in production
 const frontendDistPath = path.join(__dirname, '../frontend/dist');

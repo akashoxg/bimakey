@@ -250,3 +250,69 @@
     background-size: 24px 24px;
   }
 }
+
+/* Responsive fixes */
+@media (max-width: 640px) {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Mobile navigation fixes */
+  .mobile-nav-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Card responsive adjustments */
+  .responsive-card-padding {
+    padding: 1rem;
+  }
+  
+  /* Button responsive sizing */
+  .responsive-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Form field mobile optimization */
+  .mobile-form-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Grid gap mobile adjustment */
+  .mobile-grid-gap {
+    gap: 1rem;
+  }
+  
+  /* Hide non-essential elements on mobile */
+  .mobile-hidden {
+    display: none;
+  }
+  
+  /* Section padding mobile */
+  .mobile-section-py {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Hero text sizing */
+  .hero-heading {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tablet-section-py {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}

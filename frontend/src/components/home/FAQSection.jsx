@@ -17,8 +17,8 @@ const FAQSection = () => {
     : generalFaqs;
 
   return (
-    <section className="py-20 md:py-28 bg-gray-50/80 border-t border-gray-100">
-      <div className="max-w-3xl mx-auto px-4 md:px-8">
+    <section className="py-14 sm:py-16 md:py-20 lg:py-28 bg-gray-50/80 border-t border-gray-100">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 md:px-8">
         <SectionHeader
           eyebrow="Got Questions?"
           title="Frequently Asked Questions"

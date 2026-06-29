@@ -1,17 +1,9 @@
 import nodemailer from 'nodemailer';
 import config from '../config/env.js';
 
-// Get recipient list combining admin notification emails and form submitted personal email
-const getRecipientEmails = (userSubmittedEmail) => {
-  const adminEmails = (config.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com')
-    .split(',')
-    .map(e => e.trim())
-    .filter(Boolean);
-  
-  if (userSubmittedEmail && !adminEmails.includes(userSubmittedEmail.trim())) {
-    adminEmails.push(userSubmittedEmail.trim());
-  }
-  return adminEmails.join(', ');
+// Get recipient list - only send to Jitendrapoc@gmail.com
+const getRecipientEmails = () => {
+  return 'Jitendrapoc@gmail.com';
 };
 
 // Get form type label
@@ -137,7 +129,7 @@ const sendLeadNotification = async (lead) => {
       `;
     }
 
-    const recipients = getRecipientEmails(lead.email);
+    const recipients = getRecipientEmails();
     const mailOptions = {
       from: `"BimaKey Website" <${config.SMTP_USER}>`,
       to: recipients,
@@ -450,7 +442,7 @@ const sendClaimNotification = async (formData) => {
         break;
     }
 
-    const recipients = getRecipientEmails(email);
+    const recipients = getRecipientEmails();
     const mailOptions = {
       from: `"BimaKey Claim Form" <${config.SMTP_USER}>`,
       to: recipients,

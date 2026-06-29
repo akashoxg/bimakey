@@ -44,12 +44,12 @@ const Footer = () => {
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal/30 to-transparent" aria-hidden="true" />
       <div className="absolute inset-0 dot-grid opacity-5" aria-hidden="true" />
 
-      <div className="max-w-container mx-auto px-4 md:px-8 py-12 md:py-16 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-14 lg:py-16 relative z-10">
         {/* Top Section - Brand + Links */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 mb-12">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 mb-8 sm:mb-10 md:mb-12">
           
           {/* Brand Column - Full width on mobile, spans 2 on desktop */}
-          <div className="col-span-2 md:col-span-1 lg:col-span-1">
+          <div className="col-span-1 xs:col-span-2 md:col-span-1 lg:col-span-1 sm:mb-4">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img 
                 src="/logo.png" 
