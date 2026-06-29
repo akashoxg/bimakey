@@ -116,6 +116,15 @@ const MobileDrawer = ({ isOpen, onClose, onBooking }) => {
 
             {/* Bottom CTAs */}
             <div className="p-4 border-t border-brand-border space-y-3">
+              {/* Claim Assistance Button */}
+              <Link
+                to="/claim-assistance"
+                onClick={onClose}
+                className="w-full flex items-center justify-center gap-2 py-3 bg-brand-navy text-white font-semibold rounded-xl hover:bg-brand-navy-light transition-colors focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2"
+              >
+                <Shield className="w-4 h-4" aria-hidden="true" />
+                🚨 Claim Assistance
+              </Link>
               <button
                 type="button"
                 onClick={onBooking}

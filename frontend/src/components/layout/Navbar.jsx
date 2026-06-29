@@ -130,6 +130,19 @@ const Navbar = () => {
 
             {/* Right: CTA + Mobile Toggle */}
             <div className="flex items-center gap-3">
+              {/* Claim Assistance Button */}
+              <Link
+                to="/claim-assistance"
+                className={`hidden md:inline-flex items-center gap-2 px-4 py-2.5 text-xs md:text-sm font-bold rounded-xl transition-all duration-200 ${
+                  useLightStyle
+                    ? 'bg-brand-teal/10 text-brand-teal hover:bg-brand-teal hover:text-white border border-brand-teal/20'
+                    : 'bg-white/10 text-white hover:bg-brand-teal border border-white/20'
+                }`}
+              >
+                <Shield className="w-4 h-4" aria-hidden="true" />
+                Claim Help
+              </Link>
+
               <AnimatedButton
                 onClick={() => setBookingOpen(true)}
                 className="hidden md:inline-flex px-5 py-2.5 text-xs md:text-sm"
