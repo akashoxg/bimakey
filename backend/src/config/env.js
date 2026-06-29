@@ -27,6 +27,7 @@ export const config = {
   SMTP_SECURE: process.env.SMTP_SECURE === 'true',
   SMTP_USER: process.env.SMTP_USER,
   SMTP_PASS: process.env.SMTP_PASS,
+  NOTIFICATION_EMAIL: process.env.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com, akashsharma9205946314@gmail.com',
   ADMIN_EMAIL: process.env.ADMIN_EMAIL || 'hello@bimakey.in',
   
   // WhatsApp

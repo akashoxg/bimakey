@@ -1,8 +1,18 @@
 import nodemailer from 'nodemailer';
 import config from '../config/env.js';
 
-// Email recipient
-const NOTIFICATION_EMAIL = 'Jitendrapoc@gmail.com';
+// Get recipient list combining admin notification emails and form submitted personal email
+const getRecipientEmails = (userSubmittedEmail) => {
+  const adminEmails = (config.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com, akashsharma9205946314@gmail.com')
+    .split(',')
+    .map(e => e.trim())
+    .filter(Boolean);
+  
+  if (userSubmittedEmail && !adminEmails.includes(userSubmittedEmail.trim())) {
+    adminEmails.push(userSubmittedEmail.trim());
+  }
+  return adminEmails.join(', ');
+};
 
 // Get form type label
 const getFormTypeLabel = (source) => {
@@ -127,9 +137,10 @@ const sendLeadNotification = async (lead) => {
       `;
     }
 
+    const recipients = getRecipientEmails(lead.email);
     const mailOptions = {
       from: `"BimaKey Website" <${config.SMTP_USER}>`,
-      to: NOTIFICATION_EMAIL,
+      to: recipients,
       subject: subject,
       html: `
         <!DOCTYPE html>
@@ -280,7 +291,7 @@ www.bimakey.in | hello@bimakey.in
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent to %s: %s', NOTIFICATION_EMAIL, info.messageId);
+    console.log('Email sent to %s: %s', recipients, info.messageId);
     return { sent: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending email:', error);
@@ -439,9 +450,10 @@ const sendClaimNotification = async (formData) => {
         break;
     }
 
+    const recipients = getRecipientEmails(email);
     const mailOptions = {
       from: `"BimaKey Claim Form" <${config.SMTP_USER}>`,
-      to: NOTIFICATION_EMAIL,
+      to: recipients,
       subject: `${claimInfo.emoji} ${claimInfo.label}: ${name} - ${insurerName || 'Unknown Insurer'}`,
       html: `
         <!DOCTYPE html>
@@ -564,7 +576,7 @@ www.bimakey.in | hello@bimakey.in
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Claim notification email sent to %s: %s', NOTIFICATION_EMAIL, info.messageId);
+    console.log('Claim notification email sent to %s: %s', recipients, info.messageId);
     return { sent: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending claim notification email:', error);
