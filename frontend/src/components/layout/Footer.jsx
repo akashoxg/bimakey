@@ -1,40 +1,28 @@
 import { Link } from 'react-router-dom';
-import { Shield, Star, Phone, Mail, MapPin } from 'lucide-react';
-import { BRAND } from '../../utils/constants';
+import { Shield, Star, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { BRAND, getWhatsAppUrl } from '../../utils/constants';
 
 const footerSections = [
   {
-    title: 'Life Insurance',
+    title: 'Insurance',
     links: [
-      { label: 'Life Insurance Basics', href: '/life-insurance/basics' },
-      { label: 'Term Insurance Plans', href: '/life-insurance/plans' },
-      { label: 'For Your Profile', href: '/life-insurance/for-your-profile' },
-      { label: 'Benefits & Features', href: '/life-insurance/benefits' },
+      { label: 'Health Insurance', href: '/health-insurance' },
+      { label: 'Term Life Insurance', href: '/life-insurance' },
+      { label: 'Motor Insurance', href: '/motor-insurance' },
     ],
   },
   {
-    title: 'Health Insurance',
+    title: 'Resources',
     links: [
-      { label: 'Health Insurance Basics', href: '/health-insurance/basics' },
-      { label: 'Health Insurance Plans', href: '/health-insurance/plans' },
-      { label: 'Family Coverage', href: '/health-insurance/family-coverage' },
-      { label: 'Benefits & Features', href: '/health-insurance/benefits' },
-    ],
-  },
-  {
-    title: 'Motor Insurance',
-    links: [
-      { label: 'Motor Insurance Basics', href: '/motor-insurance/basics' },
-      { label: 'Motor Insurance Plans', href: '/motor-insurance/plans' },
-      { label: 'By Vehicle Type', href: '/motor-insurance/by-vehicle' },
-      { label: 'Benefits & Features', href: '/motor-insurance/benefits' },
+      { label: 'Health Plans', href: '/health-insurance/plans' },
+      { label: 'Term Plans', href: '/life-insurance/plans' },
+      { label: 'Motor Plans', href: '/motor-insurance/plans' },
     ],
   },
   {
     title: 'Support',
     links: [
       { label: 'Claim Assistance', href: '/claim-assistance' },
-      { label: 'Book Consultation', href: '/contact-us' },
       { label: 'Talk to Experts', href: '/experts' },
       { label: 'Contact Us', href: '/contact-us' },
     ],
@@ -56,50 +44,57 @@ const Footer = () => {
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-teal/30 to-transparent" aria-hidden="true" />
       <div className="absolute inset-0 dot-grid opacity-5" aria-hidden="true" />
 
-      <div className="max-w-container mx-auto px-4 md:px-8 py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Brand Column — spans 2 */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6">
+      <div className="max-w-container mx-auto px-4 md:px-8 py-12 md:py-16 relative z-10">
+        {/* Top Section - Brand + Links */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 mb-12">
+          
+          {/* Brand Column - Full width on mobile, spans 2 on desktop */}
+          <div className="col-span-2 md:col-span-1 lg:col-span-1">
+            <Link to="/" className="flex items-center gap-2 mb-4">
               <img 
                 src="/logo.png" 
                 alt={`${BRAND.name} Logo`} 
-                className="h-14 md:h-16 w-auto object-contain drop-shadow-sm" 
+                className="h-10 md:h-12 w-auto object-contain" 
               />
-              <span className="font-display font-extrabold text-2xl md:text-3xl tracking-tight">{BRAND.name}</span>
+              <span className="font-display font-extrabold text-xl md:text-2xl tracking-tight">{BRAND.name}</span>
             </Link>
-            <p className="text-sm text-white/40 mb-5 leading-relaxed max-w-xs">
-              {BRAND.tagline}. We help you compare and choose the right insurance with zero bias.
+            <p className="text-sm text-white/40 mb-4 leading-relaxed hidden sm:block">
+              {BRAND.tagline}
             </p>
 
-            {/* Google Rating Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 mb-6">
+            {/* Google Rating */}
+            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 mb-4">
               <Star className="w-3.5 h-3.5 text-brand-amber fill-brand-amber" aria-hidden="true" />
               <span className="text-sm font-data font-semibold">{BRAND.googleRating}</span>
-              <span className="text-xs text-white/40">on Google</span>
+              <span className="text-xs text-white/40">Google</span>
             </div>
 
-            {/* Contact info */}
-            <div className="space-y-2.5">
-              <a href={`tel:${BRAND.phone}`} className="flex items-center gap-2.5 text-sm text-white/50 hover:text-white transition-colors">
-                <Phone className="w-3.5 h-3.5" aria-hidden="true" />
+            {/* Social/Contact */}
+            <div className="space-y-2">
+              <a href={`tel:${BRAND.phone}`} className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
+                <Phone className="w-4 h-4" aria-hidden="true" />
                 {BRAND.phone}
               </a>
-              <a href={`mailto:${BRAND.email}`} className="flex items-center gap-2.5 text-sm text-white/50 hover:text-white transition-colors">
-                <Mail className="w-3.5 h-3.5" aria-hidden="true" />
+              <a href={`mailto:${BRAND.email}`} className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
+                <Mail className="w-4 h-4" aria-hidden="true" />
                 {BRAND.email}
               </a>
-              <p className="flex items-center gap-2.5 text-sm text-white/50">
-                <MapPin className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
-                {BRAND.address}
-              </p>
+              <a 
+                href={getWhatsAppUrl('general')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                WhatsApp
+              </a>
             </div>
           </div>
 
           {/* Link Columns */}
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h3 className="font-display font-semibold text-xs uppercase tracking-widest text-brand-teal mb-5">
+              <h3 className="font-display font-semibold text-xs uppercase tracking-widest text-brand-teal mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-2.5" role="list">
@@ -107,7 +102,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-sm text-white/40 hover:text-white transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand-teal rounded"
+                      className="text-sm text-white/50 hover:text-white transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand-teal rounded block py-1"
                     >
                       {link.label}
                     </Link>
@@ -117,17 +112,15 @@ const Footer = () => {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/5">
-        <div className="max-w-container mx-auto px-4 md:px-8 py-5">
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 pt-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/30">
             <p>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</p>
-            <p className="text-center">
+            <p className="text-center hidden md:block">
               IRDAI is not involved in any activities of this platform. Insurance is the subject matter of solicitation.
             </p>
-            <div className="flex items-center gap-1.5 text-brand-teal font-medium text-xs">
+            <div className="flex items-center gap-1.5 text-brand-teal font-medium">
               <Shield className="w-3 h-3" aria-hidden="true" />
               <span>No insurer commissions — ever.</span>
             </div>
