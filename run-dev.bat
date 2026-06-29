@@ -1,4 +1,6 @@
 @echo off
-cd /d C:\Users\akash\OneDrive\Desktop\insuranceCopy\frontend
+title BimaKey Frontend
+cd /d %~dp0frontend
+echo Starting BimaKey Frontend...
 npm run dev
 pause

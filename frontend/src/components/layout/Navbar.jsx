@@ -9,18 +9,11 @@ import LineHoverLink from '@/components/ui/line-hover-link';
 import AnimatedButton from '@/components/ui/animated-button';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const dropdownRef = useRef(null);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Close dropdown on route change
   useEffect(() => {
@@ -39,17 +32,10 @@ const Navbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const isHome = location.pathname === '/';
-  const useLightStyle = isScrolled || !isHome;
-
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          useLightStyle
-            ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200/50 text-slate-900'
-            : 'bg-gradient-to-b from-brand-navy/80 via-brand-navy/40 to-transparent backdrop-blur-[4px] border-b border-transparent text-white'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200/50 text-slate-900 transition-colors duration-300"
         role="navigation"
         aria-label="Main navigation"
       >
@@ -66,9 +52,7 @@ const Navbar = () => {
                 alt={`${BRAND.name} Logo`} 
                 className="h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow-md" 
               />
-              <span className={`font-display font-extrabold text-2xl md:text-3xl tracking-tight ${
-                useLightStyle ? 'text-slate-900' : 'text-white drop-shadow-sm'
-              }`}>
+              <span className="font-display font-extrabold text-2xl md:text-3xl tracking-tight text-slate-900">
                 {BRAND.name}
               </span>
             </Link>
@@ -85,9 +69,7 @@ const Navbar = () => {
                   <LineHoverLink
                     to={link.href}
                     variant="slide"
-                    className={`flex items-center gap-1 text-base font-bold tracking-wide transition-colors duration-200 ${
-                      useLightStyle ? '!text-slate-900 hover:!text-brand-teal' : '!text-white hover:!text-teal-300 drop-shadow-sm'
-                    }`}
+                    className="flex items-center gap-1 text-base font-bold tracking-wide transition-colors duration-200 !text-slate-900 hover:!text-brand-teal"
                   >
                     <span>{link.label}</span>
                     {link.children && (
@@ -133,11 +115,7 @@ const Navbar = () => {
               {/* Claim Assistance Button */}
               <Link
                 to="/claim-assistance"
-                className={`hidden md:inline-flex items-center gap-2 px-4 py-2.5 text-xs md:text-sm font-bold rounded-xl transition-all duration-200 ${
-                  useLightStyle
-                    ? 'bg-brand-teal/10 text-brand-teal hover:bg-brand-teal hover:text-white border border-brand-teal/20'
-                    : 'bg-white/10 text-white hover:bg-brand-teal border border-white/20'
-                }`}
+                className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 text-xs md:text-sm font-bold rounded-xl transition-all duration-200 bg-brand-teal/10 text-brand-teal hover:bg-brand-teal hover:text-white border border-brand-teal/20"
               >
                 <Shield className="w-4 h-4" aria-hidden="true" />
                 Claim Help
@@ -153,9 +131,7 @@ const Navbar = () => {
 
               <button
                 type="button"
-                className={`lg:hidden p-2 rounded-lg transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal ${
-                  useLightStyle ? 'text-slate-900 hover:bg-gray-100' : 'text-white hover:bg-white/10'
-                }`}
+                className="lg:hidden p-2 rounded-lg transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal text-slate-900 hover:bg-gray-100"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open navigation menu"
               >

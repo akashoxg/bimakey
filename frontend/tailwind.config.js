@@ -20,6 +20,11 @@ export default {
           border: '#E2E8F0',
           'text-primary': '#0C1220',
           'text-secondary': '#5E6E82',
+          // Light theme specific
+          'bg-primary': '#FAFAF8',
+          'bg-elevated': '#FFFFFF',
+          'bg-subtle': '#F0F4F2',
+          'bg-warm': '#F9F7F4',
         },
       },
       fontFamily: {
@@ -113,6 +118,7 @@ export default {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'mesh-dark': 'radial-gradient(at 20% 20%, rgba(27, 107, 90, 0.15) 0px, transparent 50%), radial-gradient(at 80% 60%, rgba(224, 122, 47, 0.08) 0px, transparent 50%)',
         'mesh-light': 'radial-gradient(at 30% 0%, rgba(27, 107, 90, 0.06) 0px, transparent 50%), radial-gradient(at 80% 100%, rgba(224, 122, 47, 0.04) 0px, transparent 50%)',
+        'mesh-light-hero': 'radial-gradient(at 20% 30%, rgba(27, 107, 90, 0.08) 0px, transparent 50%), radial-gradient(at 80% 70%, rgba(224, 122, 47, 0.05) 0px, transparent 50%), radial-gradient(at 50% 100%, rgba(27, 107, 90, 0.06) 0px, transparent 50%)',
       },
     },
   },

@@ -24,7 +24,7 @@ const leadSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Insurance type is required'],
     enum: {
-      values: ['health', 'term', 'motor', 'other'],
+      values: ['health', 'term', 'motor', 'other', 'health-claim', 'motor-claim', 'life-claim', 'policy-issue', 'renewal-help'],
       message: 'Invalid insurance type',
     },
   },

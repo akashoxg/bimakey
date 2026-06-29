@@ -1,5 +1,11 @@
 import 'dotenv/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
+
+// ES module dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -58,6 +64,23 @@ app.use('/api/leads', leadLimiter);
 
 // API Routes
 app.use('/api/leads', leadRoutes);
+
+// Serve static files from frontend build in production
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendDistPath));
+
+// Serve frontend in production for all non-API routes
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  // Only serve frontend in production
+  if (config.NODE_ENV === 'production') {
+    return res.sendFile(path.join(frontendDistPath, 'index.html'));
+  }
+  // In development, let Vite handle frontend routes via proxy
+  next();
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

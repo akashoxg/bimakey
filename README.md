@@ -5,6 +5,7 @@
 ![Stack](https://img.shields.io/badge/Stack-React%20%7C%20Vite%20%7C%20Tailwind%20CSS%20%7C%20Node.js-E07A2F?style=for-the-badge)
 [![CI/CD](https://github.com/akashoxg/bimakey/actions/workflows/ci.yml/badge.svg)](https://github.com/akashoxg/bimakey/actions)
 [![Tests](https://img.shields.io/badge/Tests-Vitest-129%3F?style=for-the-badge)](https://vitest.dev/)
+![CI Status](https://img.shields.io/badge/CI-Active-brightgreen?style=for-the-badge)
 
 **BimaKey** is a modern, transparent, and completely unbiased insurance comparison and advisory web platform. We help families across India compare 150+ Health, Term Life, and Motor insurance plans using a published rating methodology—with zero agent commissions, zero spam calls, and lifelong claims support.
 

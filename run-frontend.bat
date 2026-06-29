@@ -1,3 +1,3 @@
 @echo off
-cd /d C:\Users\akash\OneDrive\Desktop\insuranceCopy\frontend
+cd /d %~dp0frontend
 npm run dev
