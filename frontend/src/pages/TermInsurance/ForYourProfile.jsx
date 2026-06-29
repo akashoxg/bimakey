@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { User, Heart, Home, Briefcase, Baby, Clock, Phone, ArrowRight } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
@@ -101,12 +102,12 @@ const ForYourProfile = () => {
                   <Phone className="w-4 h-4" aria-hidden="true" />
                   Get Expert Advice
                 </button>
-                <a
-                  href="/life-insurance/plans"
+                <Link
+                  to="/life-insurance/plans"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 text-brand-navy font-semibold rounded-xl hover:bg-gray-50 transition-colors"
                 >
                   View Top Plans <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </a>
+                </Link>
               </div>
             </motion.div>
           ) : (

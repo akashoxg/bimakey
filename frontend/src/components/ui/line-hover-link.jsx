@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const lineHoverStyles = `
@@ -43,18 +44,43 @@ const lineHoverStyles = `
 
 export const LineHoverLink = React.forwardRef(
   ({ variant = "slide", children, className, onClick, href, to, ...props }, ref) => {
+    const target = to || href || "#";
+    const isExternal = typeof target === "string" && (
+      target.startsWith("http") || 
+      target.startsWith("mailto:") || 
+      target.startsWith("tel:") || 
+      target.startsWith("#")
+    );
+
+    if (isExternal) {
+      return (
+        <>
+          <style>{lineHoverStyles}</style>
+          <a
+            ref={ref}
+            href={target}
+            onClick={onClick}
+            className={cn("link-hover", `link-hover--${variant}`, className)}
+            {...props}
+          >
+            <span>{children}</span>
+          </a>
+        </>
+      );
+    }
+
     return (
       <>
         <style>{lineHoverStyles}</style>
-        <a
+        <Link
           ref={ref}
-          href={href || to || "#"}
+          to={target}
           onClick={onClick}
           className={cn("link-hover", `link-hover--${variant}`, className)}
           {...props}
         >
           <span>{children}</span>
-        </a>
+        </Link>
       </>
     );
   }

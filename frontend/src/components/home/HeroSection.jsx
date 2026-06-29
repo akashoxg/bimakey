@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Phone, ArrowRight, Star, ShieldCheck, BadgeCheck, TrendingUp } from 'lucide-react';
 import BookingModal from '../consultation/BookingModal';
@@ -71,13 +72,13 @@ const HeroSection = () => {
                   <Phone className="w-5 h-5 mr-1 inline" aria-hidden="true" />
                   Book Free Consultation
                 </AnimatedButton>
-                <a
-                  href="/health-insurance/plans"
+                <Link
+                  to="/health-insurance/plans"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-brand-teal/20 text-brand-teal font-semibold rounded-xl hover:bg-brand-teal/5 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal/50"
                 >
                   Compare Plans
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </a>
+                </Link>
               </div>
 
               {/* Trust badges strip */}

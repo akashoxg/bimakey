@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import { BRAND } from '../utils/constants';
 
@@ -109,7 +110,7 @@ const TermsOfService = () => {
 
               <h2 className="font-display font-bold text-2xl text-brand-navy mt-10 mb-4">10. Privacy</h2>
               <p className="mb-6">
-                Your use of our services is also governed by our Privacy Policy. Please review it at <a href="/privacy-policy" className="text-brand-teal hover:underline">/privacy-policy</a>.
+                Your use of our services is also governed by our Privacy Policy. Please review it at <Link to="/privacy-policy" className="text-brand-teal hover:underline">/privacy-policy</Link>.
               </p>
 
               <h2 className="font-display font-bold text-2xl text-brand-navy mt-10 mb-4">11. Modifications to Terms</h2>

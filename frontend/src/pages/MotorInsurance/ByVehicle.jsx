@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Car, Truck, Bike, Phone, ArrowRight, ShieldCheck, Info } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
@@ -104,9 +105,9 @@ const ByVehicle = () => {
                 <button type="button" onClick={() => setBookingOpen(true)} className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-teal text-white font-bold rounded-xl hover:bg-brand-teal-hover transition-colors shadow-sm">
                   <Phone className="w-4 h-4" aria-hidden="true" /> Get Expert Advice
                 </button>
-                <a href="/motor-insurance/plans" className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 text-brand-navy font-semibold rounded-xl hover:bg-gray-50 transition-colors">
+                <Link to="/motor-insurance/plans" className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 text-brand-navy font-semibold rounded-xl hover:bg-gray-50 transition-colors">
                   View Top Plans <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </a>
+                </Link>
               </div>
             </motion.div>
           ) : (
