@@ -58,13 +58,13 @@ export const NAV_LINKS = [
     ],
   },
   {
-    label: 'Talk to Experts',
-    href: '/experts',
+    label: 'Claim Help',
+    href: '/claim-assistance',
     children: null,
   },
   {
-    label: 'Contact Us',
-    href: '/contact-us',
+    label: 'Talk to Experts',
+    href: '/experts',
     children: null,
   },
 ];

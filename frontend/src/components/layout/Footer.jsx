@@ -31,11 +31,18 @@ const footerSections = [
     ],
   },
   {
+    title: 'Support',
+    links: [
+      { label: 'Claim Assistance', href: '/claim-assistance' },
+      { label: 'Book Consultation', href: '/contact-us' },
+      { label: 'Talk to Experts', href: '/experts' },
+      { label: 'Contact Us', href: '/contact-us' },
+    ],
+  },
+  {
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
-      { label: 'Contact Us', href: '/contact-us' },
-      { label: 'Book Consultation', href: '/contact-us' },
       { label: 'Privacy Policy', href: '/privacy-policy' },
       { label: 'Terms of Service', href: '/terms-of-service' },
     ],

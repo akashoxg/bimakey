@@ -22,6 +22,7 @@ import MotorBenefits from './pages/MotorInsurance/BenefitsFeatures';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Experts from './pages/Experts';
+import ClaimAssistance from './pages/ClaimAssistance';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import NotFound from './pages/NotFound';
@@ -75,6 +76,7 @@ function App() {
             <Route path="/contact-us" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/experts" element={<Experts />} />
+            <Route path="/claim-assistance" element={<ClaimAssistance />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
