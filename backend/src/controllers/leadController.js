@@ -1,5 +1,5 @@
 import Lead from '../models/Lead.js';
-import { sendLeadNotification } from '../utils/emailService.js';
+import { sendLeadNotification, sendClaimNotification } from '../utils/emailService.js';
 import { sendWhatsAppNotification } from '../utils/whatsappService.js';
 
 const createLead = async (req, res, next) => {
@@ -36,6 +36,51 @@ const createLead = async (req, res, next) => {
         name: lead.name,
         phone: lead.phone,
         insuranceType: lead.insuranceType,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Submit claim form - sends email notification
+const submitClaimForm = async (req, res, next) => {
+  try {
+    const { claimType, name, phone, email, ...otherFields } = req.body;
+
+    // Validate required fields
+    if (!name || !phone || !email || !claimType) {
+      return res.status(400).json({
+        success: false,
+        message: 'Name, phone, email, and claim type are required.',
+      });
+    }
+
+    // Create a lead record for this claim form
+    const lead = await Lead.create({
+      name,
+      phone,
+      email,
+      insuranceType: claimType,
+      claimType,
+      source: 'claim-assistance',
+      ipAddress: req.ip || req.connection.remoteAddress,
+      ...otherFields,
+    });
+
+    // Send formatted claim notification email to Jitendrapoc@gmail.com
+    sendClaimNotification(req.body).catch(err => 
+      console.error('Failed to send claim notification email:', err)
+    );
+
+    res.status(201).json({
+      success: true,
+      message: 'Your claim assistance request has been submitted. We\'ll contact you within 30 minutes!',
+      data: {
+        id: lead._id,
+        name: lead.name,
+        phone: lead.phone,
+        claimType: lead.claimType,
       },
     });
   } catch (error) {
@@ -101,6 +146,7 @@ const updateLeadStatus = async (req, res, next) => {
 
 export {
   createLead,
+  submitClaimForm,
   getLeads,
   updateLeadStatus,
 };

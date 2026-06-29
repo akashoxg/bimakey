@@ -1,5 +1,5 @@
 import express from 'express';
-import { createLead, getLeads, updateLeadStatus } from '../controllers/leadController.js';
+import { createLead, getLeads, updateLeadStatus, submitClaimForm } from '../controllers/leadController.js';
 import { validateLead } from '../middleware/validate.js';
 import { authMiddleware } from '../middleware/auth.js';
 
@@ -8,6 +8,9 @@ const router = express.Router();
 // Public routes
 router.route('/')
   .post(validateLead, createLead);
+
+// Claim form submission route
+router.post('/claims/submit', submitClaimForm);
 
 // Protected routes (admin)
 router.use('/admin', authMiddleware);
