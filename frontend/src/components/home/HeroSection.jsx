@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, ArrowRight, Star, ShieldCheck, BadgeCheck, TrendingUp } from 'lucide-react';
 import BookingModal from '../consultation/BookingModal';
+import { TwistingRibbon } from '@/components/ui/twisting-ribbon';
 
 const HeroSection = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -11,6 +12,16 @@ const HeroSection = () => {
       <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden hero-mesh min-h-[85vh] flex items-center">
         {/* Subtle dot grid overlay */}
         <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
+
+        {/* Twisting Ribbon Animated Background */}
+        <div className="absolute inset-0 z-0 opacity-70 pointer-events-none overflow-hidden" aria-hidden="true">
+          <TwistingRibbon
+            segments={400}
+            waveSpeed={0.018}
+            waveAmplitude={1}
+            twistCycles={6}
+          />
+        </div>
 
         {/* Floating geometric shapes */}
         <div className="absolute top-20 right-[15%] w-64 h-64 rounded-full border border-white/5 animate-float" aria-hidden="true" />
