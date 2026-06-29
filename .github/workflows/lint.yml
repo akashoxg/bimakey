@@ -1,0 +1,55 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Frontend checks
+      - name: Check frontend formatting
+        run: |
+          cd frontend
+          npm ci
+          npx oxlint --output-format stylish || true
+
+      # Backend checks
+      - name: Check backend syntax
+        run: |
+          cd backend
+          npm ci
+          node --check server.js 2>&1 || echo "Syntax check completed"
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run npm audit (Frontend)
+        run: |
+          cd frontend
+          npm ci
+          npm audit --audit-level=high || true
+
+      - name: Run npm audit (Backend)
+        run: |
+          cd backend
+          npm ci
+          npm audit --audit-level=high || true

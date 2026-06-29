@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-36 md:pb-20 overflow-hidden hero-mesh min-h-[calc(100dvh-76px)] flex items-center">
+      <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden hero-mesh min-h-[90dvh] flex items-center">
         {/* Subtle dot grid overlay */}
         <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
 
@@ -54,23 +54,23 @@ const HeroSection = () => {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-brand-teal text-sm font-semibold mb-4 sm:mb-8 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-brand-teal text-sm font-semibold mb-8 backdrop-blur-sm">
                 <BadgeCheck className="w-4 h-4" aria-hidden="true" />
                 <span>India&rsquo;s Only 100% Unbiased Platform</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1] mb-4 sm:mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1] mb-6">
                 Find the Right Insurance.<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal via-brand-teal-light to-brand-amber">
                   Not the Highest Commission.
                 </span>
               </h1>
 
-              <p className="text-white/60 text-base sm:text-lg md:text-xl mb-6 sm:mb-10 leading-relaxed max-w-xl font-body">
+              <p className="text-white/60 text-lg md:text-xl mb-10 leading-relaxed max-w-xl font-body">
                 We compare 150+ health and term plans using a transparent rating methodology. No spam calls. No hidden fees. Just expert advice.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8 sm:mb-12 items-start sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-4 mb-12 items-start sm:items-center">
                 <AnimatedButton
                   onClick={() => setBookingOpen(true)}
                   className="w-full sm:w-auto text-base py-4 px-8"

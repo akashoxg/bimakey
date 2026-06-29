@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin/development paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://bimakey.in/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1

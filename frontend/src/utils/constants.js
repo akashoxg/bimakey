@@ -58,6 +58,11 @@ export const NAV_LINKS = [
     ],
   },
   {
+    label: 'Talk to Experts',
+    href: '/experts',
+    children: null,
+  },
+  {
     label: 'Contact Us',
     href: '/contact-us',
     children: null,

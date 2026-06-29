@@ -1,29 +1,91 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./src/config/db');
-const leadRoutes = require('./src/routes/leadRoutes');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import mongoSanitize from 'express-mongo-sanitize';
+import morgan from 'morgan';
+import connectDB from './src/config/db.js';
+import leadRoutes from './src/routes/leadRoutes.js';
+import { errorHandler, notFound } from './src/middleware/error.js';
+import { config } from './src/config/env.js';
 
 // Connect to database
 connectDB();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Trust proxy (for rate limiting behind reverse proxy)
+app.set('trust proxy', 1);
 
-// Routes
+// Security middleware
+app.use(helmet());
+
+// CORS configuration
+app.use(cors({
+  origin: config.CLIENT_URL,
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+// Body parser
+app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+// MongoDB injection prevention
+app.use(mongoSanitize());
+
+// Logging
+if (config.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
+// Rate limiting for lead submissions
+const leadLimiter = rateLimit({
+  windowMs: config.RATE_LIMIT_WINDOW_MS,
+  max: config.RATE_LIMIT_MAX_REQUESTS,
+  message: {
+    success: false,
+    message: 'Too many submissions from this IP. Please try again in an hour.',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply rate limiting to lead routes
+app.use('/api/leads', leadLimiter);
+
+// API Routes
 app.use('/api/leads', leadRoutes);
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ success: false, message: 'Server Error', error: err.message });
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Server is running',
+    timestamp: new Date().toISOString(),
+  });
 });
 
-const PORT = process.env.PORT || 5000;
+// 404 handler
+app.use(notFound);
+
+// Global error handler
+app.use(errorHandler);
+
+const PORT = config.PORT;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   🚀 Server running on port ${PORT}                          ║
+║   📍 Environment: ${config.NODE_ENV.padEnd(40)}║
+║   🌍 CORS origin: ${config.CLIENT_URL.padEnd(42)}║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+  `);
 });
+
+export default app;

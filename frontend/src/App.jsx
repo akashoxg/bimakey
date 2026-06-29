@@ -21,9 +21,8 @@ import MotorByVehicle from './pages/MotorInsurance/ByVehicle';
 import MotorBenefits from './pages/MotorInsurance/BenefitsFeatures';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Experts from './pages/Experts';
 import NotFound from './pages/NotFound';
-import MobileBottomBar from './components/layout/MobileBottomBar';
-
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   
@@ -73,11 +72,11 @@ function App() {
             {/* Other */}
             <Route path="/contact-us" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/experts" element={<Experts />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
       </main>
-      <MobileBottomBar />
       <Footer />
     </div>
   );
