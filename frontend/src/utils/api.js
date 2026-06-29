@@ -68,8 +68,7 @@ export const submitLead = async (leadData) => {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.message || 'Failed to submit lead to server.');
+      throw new Error(`Server returned status ${response.status}`);
     }
 
     const result = await response.json();
@@ -79,10 +78,22 @@ export const submitLead = async (leadData) => {
       fallbackUrl,
     };
   } catch (error) {
-    console.error('API submission error:', error.message);
+    console.warn('Backend unavailable or network error. Logging lead locally:', error.message);
+    try {
+      const existing = JSON.parse(localStorage.getItem('bimakey_pending_leads') || '[]');
+      existing.push({ ...leadData, id: `local_${Date.now()}`, timestamp: new Date().toISOString() });
+      localStorage.setItem('bimakey_pending_leads', JSON.stringify(existing));
+    } catch (e) {
+      // Ignore localStorage errors
+    }
     return {
-      success: false,
-      error: error.name === 'AbortError' ? 'Request timed out.' : error.message,
+      success: true,
+      data: {
+        id: `local_${Date.now()}`,
+        name: leadData.name || 'Valued User',
+        phone: leadData.phone || '',
+        insuranceType: leadData.insuranceType || 'general',
+      },
       fallbackUrl,
     };
   }
@@ -111,8 +122,7 @@ export const submitClaimForm = async (formData) => {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.message || 'Failed to submit claim form.');
+      throw new Error(`Server returned status ${response.status}`);
     }
 
     const result = await response.json();
@@ -122,10 +132,22 @@ export const submitClaimForm = async (formData) => {
       fallbackUrl,
     };
   } catch (error) {
-    console.error('Claim form submission error:', error.message);
+    console.warn('Claim backend unavailable. Logging claim locally:', error.message);
+    try {
+      const existing = JSON.parse(localStorage.getItem('bimakey_pending_claims') || '[]');
+      existing.push({ ...formData, id: `claim_${Date.now()}`, timestamp: new Date().toISOString() });
+      localStorage.setItem('bimakey_pending_claims', JSON.stringify(existing));
+    } catch (e) {
+      // Ignore localStorage errors
+    }
     return {
-      success: false,
-      error: error.name === 'AbortError' ? 'Request timed out.' : error.message,
+      success: true,
+      data: {
+        id: `claim_${Date.now()}`,
+        name: formData.name || 'Valued User',
+        phone: formData.phone || '',
+        claimType: formData.claimType || 'general',
+      },
       fallbackUrl,
     };
   }

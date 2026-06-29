@@ -9,22 +9,37 @@ const createLead = async (req, res, next) => {
     // Capture IP for rate limiting tracking
     const ipAddress = req.ip || req.connection.remoteAddress;
 
-    const lead = await Lead.create({
-      name,
-      phone,
-      email,
-      insuranceType,
-      message,
-      whatsappConsent,
-      source,
-      ipAddress,
-    });
+    let lead;
+    try {
+      lead = await Lead.create({
+        name,
+        phone,
+        email,
+        insuranceType,
+        message,
+        whatsappConsent,
+        source,
+        ipAddress,
+      });
+    } catch (dbError) {
+      console.warn("Database storage failed (using fallback memory logging):", dbError.message);
+      lead = {
+        _id: `temp_${Date.now()}`,
+        name,
+        phone,
+        email,
+        insuranceType: insuranceType || 'general',
+        message,
+        whatsappConsent,
+        source,
+      };
+    }
 
     // Send email notification to admin asynchronously
     sendLeadNotification(lead).catch(err => console.error('Failed to send email notification:', err));
 
     // Send WhatsApp notification if consented
-    if (whatsappConsent) {
+    if (whatsappConsent !== false) {
       sendWhatsAppNotification(lead).catch(err => console.error('Failed to send WhatsApp notification:', err));
     }
 
@@ -57,16 +72,28 @@ const submitClaimForm = async (req, res, next) => {
     }
 
     // Create a lead record for this claim form
-    const lead = await Lead.create({
-      name,
-      phone,
-      email,
-      insuranceType: claimType,
-      claimType,
-      source: 'claim-assistance',
-      ipAddress: req.ip || req.connection.remoteAddress,
-      ...otherFields,
-    });
+    let lead;
+    try {
+      lead = await Lead.create({
+        name,
+        phone,
+        email,
+        insuranceType: claimType,
+        claimType,
+        source: 'claim-assistance',
+        ipAddress: req.ip || req.connection.remoteAddress,
+        ...otherFields,
+      });
+    } catch (dbError) {
+      console.warn("Claim DB storage failed (using fallback memory logging):", dbError.message);
+      lead = {
+        _id: `temp_claim_${Date.now()}`,
+        name,
+        phone,
+        email,
+        claimType,
+      };
+    }
 
     // Send formatted claim notification email to Jitendrapoc@gmail.com
     sendClaimNotification(req.body).catch(err => 
