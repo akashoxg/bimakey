@@ -27,7 +27,7 @@ export default async function handler(req, res) {
           secure: process.env.SMTP_SECURE === 'true',
           auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
         });
-        const adminEmails = (process.env.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com, akashsharma9205946314@gmail.com').split(',').map(e => e.trim()).filter(Boolean);
+        const adminEmails = (process.env.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com').split(',').map(e => e.trim()).filter(Boolean);
         if (data.email && !adminEmails.includes(data.email.trim())) adminEmails.push(data.email.trim());
         
         await transporter.sendMail({

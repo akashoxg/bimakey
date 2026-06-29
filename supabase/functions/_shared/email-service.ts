@@ -2,7 +2,7 @@ import nodemailer from 'npm:nodemailer@6.9.14';
 
 // Get recipient list combining admin notification emails and form submitted personal email
 const getRecipientEmails = (userSubmittedEmail?: string) => {
-  const envEmails = Deno.env.get('NOTIFICATION_EMAIL') || 'Jitendrapoc@gmail.com, akashsharma9205946314@gmail.com';
+  const envEmails = Deno.env.get('NOTIFICATION_EMAIL') || 'Jitendrapoc@gmail.com';
   const adminEmails = envEmails.split(',').map((e: string) => e.trim()).filter(Boolean);
   if (userSubmittedEmail && !adminEmails.includes(userSubmittedEmail.trim())) {
     adminEmails.push(userSubmittedEmail.trim());

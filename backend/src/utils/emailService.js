@@ -3,7 +3,7 @@ import config from '../config/env.js';
 
 // Get recipient list combining admin notification emails and form submitted personal email
 const getRecipientEmails = (userSubmittedEmail) => {
-  const adminEmails = (config.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com, akashsharma9205946314@gmail.com')
+  const adminEmails = (config.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com')
     .split(',')
     .map(e => e.trim())
     .filter(Boolean);
