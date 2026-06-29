@@ -2,8 +2,8 @@
 export const BRAND = {
   name: 'BimaKey',
   tagline: "India's only 100% unbiased insurance platform",
-  phone: '+919876543210',
-  whatsapp: '919876543210',
+  phone: '+919717427154',
+  whatsapp: '919717427154',
   email: 'hello@bimakey.in',
   address: 'New Delhi, India',
   googleRating: 4.7,

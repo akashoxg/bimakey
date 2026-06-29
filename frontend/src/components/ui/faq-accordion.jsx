@@ -27,9 +27,8 @@ export function FaqAccordion({
           return (
             <li
               key={index}
-              onMouseEnter={() => setActiveIndex(index)}
               className={cn(
-                "w-full relative transition-all duration-300 ease-in mb-3 rounded-xl overflow-hidden border",
+                "w-full relative transition-colors duration-300 ease-in mb-3 rounded-xl overflow-hidden border",
                 isActive ? "border-brand-teal/30 shadow-sm" : "border-gray-200/80"
               )}
             >
@@ -37,7 +36,7 @@ export function FaqAccordion({
                 type="button"
                 className={cn(
                   "flex flex-row items-center justify-between w-full min-h-[64px] py-4 relative m-0 px-5 pl-14 cursor-pointer",
-                  "border-l-[6px] md:border-l-[8px] transition-all duration-200 text-left outline-none text-base md:text-lg",
+                  "border-l-[6px] md:border-l-[8px] transition-colors duration-200 text-left outline-none text-base md:text-lg",
                   isActive 
                     ? "border-l-brand-teal bg-brand-teal-light/40 text-brand-navy font-bold" 
                     : "border-l-gray-300 bg-white text-gray-700 hover:border-l-brand-teal/60 hover:text-brand-navy hover:bg-gray-50"
@@ -60,7 +59,7 @@ export function FaqAccordion({
 
               <div 
                 className={cn(
-                  "grid transition-all duration-300 ease-in-out w-full",
+                  "grid transition-[grid-template-rows,opacity,background-color,border-color] duration-300 ease-in-out w-full",
                   "border-l-[6px] md:border-l-[8px]",
                   isActive ? "grid-rows-[1fr] border-l-brand-teal bg-brand-teal-light/20 opacity-100" : "grid-rows-[0fr] border-l-gray-300 bg-transparent opacity-0"
                 )}

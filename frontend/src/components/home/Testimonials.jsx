@@ -17,21 +17,6 @@ const Testimonials = () => {
 
   return (
     <section className="py-20 md:py-28 bg-brand-white overflow-hidden">
-      <style>{`
-        @keyframes marquee-left {
-          0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
-        }
-        .animate-marquee {
-          display: flex;
-          width: max-content;
-          animation: marquee-left 45s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
       <div className="max-w-container mx-auto px-4 md:px-8 mb-12">
         <SectionHeader
           eyebrow="Real Stories"
@@ -51,7 +36,7 @@ const Testimonials = () => {
         <div className="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-brand-white to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-brand-white to-transparent z-10 pointer-events-none" />
 
-        <div className="animate-marquee gap-6 px-3">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 px-3 will-change-transform">
           {repeatedTestimonials.map((testimonial, index) => {
             const colors = planColors[testimonial.plan] || planColors['Health Insurance'];
             const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.name)}&background=1B6B5A&color=fff&size=80&font-size=0.4&bold=true`;

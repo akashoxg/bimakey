@@ -8,7 +8,7 @@ const WhatsAppButton = ({ context = 'general' }) => {
       href={getWhatsAppUrl(context)}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center group hover:bg-green-600 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 md:bottom-8 md:right-8"
+      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-green-500 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center group hover:bg-green-600 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 md:bottom-8 md:right-8"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: 'spring', stiffness: 200, damping: 15 }}

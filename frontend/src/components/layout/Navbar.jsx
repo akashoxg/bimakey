@@ -45,9 +45,9 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           useLightStyle
-            ? 'bg-white/85 backdrop-blur-xl shadow-sm border-b border-gray-200/50 text-slate-900'
+            ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200/50 text-slate-900'
             : 'bg-gradient-to-b from-brand-navy/80 via-brand-navy/40 to-transparent backdrop-blur-[4px] border-b border-transparent text-white'
         }`}
         role="navigation"

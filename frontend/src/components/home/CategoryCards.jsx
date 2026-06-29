@@ -69,7 +69,7 @@ const CategoryCards = () => {
             <motion.div key={category.id} variants={fadeInUp}>
               <Link
                 to={category.href}
-                className={`block h-full bg-white rounded-2xl p-8 shadow-soft ${category.hoverShadow} ${category.accentClass} transition-all duration-300 group focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 outline-none hover:-translate-y-1`}
+                className={`block h-full bg-white rounded-2xl p-8 shadow-soft ${category.hoverShadow} ${category.accentClass} transition-[box-shadow,transform,border-color] duration-300 group focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 outline-none hover:-translate-y-1`}
               >
                 <div className="flex items-center justify-between mb-6">
                   <div className={`w-14 h-14 rounded-xl ${category.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>

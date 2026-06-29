@@ -10,7 +10,7 @@ export function SpotlightNavbar({
 }) {
   const navRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
-  const [hoverX, setHoverX] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const spotlightX = useRef(0);
   const ambienceX = useRef(0);
@@ -22,13 +22,13 @@ export function SpotlightNavbar({
     const handleMouseMove = (e) => {
       const rect = nav.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      setHoverX(x);
+      setIsHovered(true);
       spotlightX.current = x;
       nav.style.setProperty("--spotlight-x", `${x}px`);
     };
 
     const handleMouseLeave = () => {
-      setHoverX(null);
+      setIsHovered(false);
       const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
       if (activeItem) {
         const navRect = nav.getBoundingClientRect();
@@ -89,7 +89,7 @@ export function SpotlightNavbar({
       <nav
         ref={navRef}
         className={cn(
-          "relative h-11 rounded-full transition-all duration-300 overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 px-2"
+          "relative h-11 rounded-full transition-colors duration-300 overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 px-2"
         )}
         style={{
           "--spotlight-color": "rgba(20, 184, 166, 0.25)",
@@ -120,7 +120,7 @@ export function SpotlightNavbar({
         <div
           className="pointer-events-none absolute bottom-0 left-0 w-full h-full z-[1] transition-opacity duration-300"
           style={{
-            opacity: hoverX !== null ? 1 : 0,
+            opacity: isHovered ? 1 : 0,
             background: `radial-gradient(100px circle at var(--spotlight-x) 100%, var(--spotlight-color) 0%, transparent 60%)`,
           }}
         />

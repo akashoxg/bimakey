@@ -35,11 +35,11 @@ const MotorIndex = () => {
           <motion.div ref={ref} initial="hidden" animate={controls} variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {guides.map((guide) => (
               <motion.div key={guide.title} variants={fadeInUp}>
-                <Link to={guide.href} className="block h-full bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-card hover:border-brand-teal transition-all duration-300 group focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 outline-none">
+                <Link to={guide.href} className="block h-full bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-card hover:border-brand-teal transition-[box-shadow,border-color] duration-300 group focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 outline-none">
                   <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-teal-light group-hover:text-brand-teal transition-colors"><guide.icon className="w-6 h-6" /></div>
                   <h3 className="font-display font-bold text-xl text-brand-navy mb-2 group-hover:text-brand-teal transition-colors">{guide.title}</h3>
                   <p className="text-brand-text-secondary mb-4">{guide.description}</p>
-                  <div className="flex items-center gap-2 text-brand-teal font-medium group-hover:gap-3 transition-all">Read Guide <ArrowRight className="w-4 h-4" /></div>
+                  <div className="flex items-center gap-2 text-brand-teal font-medium group-hover:gap-3 transition-[gap] duration-200">Read Guide <ArrowRight className="w-4 h-4" /></div>
                 </Link>
               </motion.div>
             ))}

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, MessageCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import toast from 'react-hot-toast';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import { BRAND, INSURANCE_TYPES, getWhatsAppUrl } from '../utils/constants';
+import { submitLead } from '../utils/api';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -27,6 +28,8 @@ const contactInfo = [
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [fallbackUrl, setFallbackUrl] = useState('');
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: zodResolver(contactSchema),
@@ -37,19 +40,17 @@ const Contact = () => {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    try {
-      const response = await fetch('http://localhost:5000/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, source: 'contact-page' }),
-      });
-      if (!response.ok) throw new Error('Failed to submit');
+    setIsError(false);
+    const result = await submitLead({ ...data, source: 'contact-page' });
+    setIsSubmitting(false);
+
+    if (result.success) {
       setIsSuccess(true);
       toast.success('Consultation booked successfully!');
-    } catch (error) {
-      toast.error('Something went wrong. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      setFallbackUrl(result.fallbackUrl);
+      setIsError(true);
+      toast.error('Server unavailable. Please connect via WhatsApp.');
     }
   };
 
@@ -95,7 +96,7 @@ const Contact = () => {
                     <Wrapper
                       key={item.label}
                       {...wrapperProps}
-                      className={`flex items-start gap-4 p-4 rounded-xl border border-gray-100 bg-white ${item.href ? 'hover:border-brand-teal/20 hover:shadow-soft transition-all duration-200 cursor-pointer' : ''} group`}
+                      className={`flex items-start gap-4 p-4 rounded-xl border border-gray-100 bg-white ${item.href ? 'hover:border-brand-teal/20 hover:shadow-soft transition-[border-color,box-shadow] duration-200 cursor-pointer' : ''} group`}
                     >
                       <div className="w-10 h-10 rounded-lg bg-brand-teal-light flex items-center justify-center flex-shrink-0 group-hover:bg-brand-teal transition-colors duration-200">
                         <item.icon className="w-5 h-5 text-brand-teal group-hover:text-white transition-colors duration-200" aria-hidden="true" />
@@ -132,7 +133,38 @@ const Contact = () => {
                   Fill in your details and we’ll call you within 24 hours.
                 </p>
 
-                {isSuccess ? (
+                {isError ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center py-12"
+                  >
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <AlertCircle className="w-8 h-8 text-red-600" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-brand-navy mb-2">Server Temporarily Offline</h3>
+                    <p className="text-brand-text-secondary mb-6">
+                      Don&rsquo;t worry! You can instantly chat with our expert advisor on WhatsApp with your request pre-filled.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                      <a
+                        href={fallbackUrl || getWhatsAppUrl('contact')}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white rounded-xl font-semibold hover:bg-green-600 transition-colors"
+                      >
+                        💬 Continue on WhatsApp
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => { setIsError(false); reset(); }}
+                        className="px-6 py-3 border-2 border-brand-border text-brand-navy rounded-xl font-semibold hover:bg-gray-50 transition-colors"
+                      >
+                        Try Again
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : isSuccess ? (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}

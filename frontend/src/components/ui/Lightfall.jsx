@@ -73,7 +73,11 @@ export function Lightfall({
       twinkleSpd: (0.01 + Math.random() * 0.03) * twinkle,
     }));
 
-    const render = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let isVisible = true;
+    let isRunning = false;
+
+    const drawFrame = () => {
       ctx.clearRect(0, 0, width, height);
 
       // Draw background
@@ -107,15 +111,17 @@ export function Lightfall({
       const radius = mouseRadius * 120;
 
       streaks.forEach((s) => {
-        s.y += s.spd;
-        if (s.y - s.len > height) {
-          s.y = -s.len;
-          s.x = Math.random() * width;
-        }
+        if (!prefersReducedMotion) {
+          s.y += s.spd;
+          if (s.y - s.len > height) {
+            s.y = -s.len;
+            s.x = Math.random() * width;
+          }
 
-        if (twinkle > 0) {
-          s.alpha += s.twinkleSpd;
-          if (s.alpha > 1 || s.alpha < 0.2) s.twinkleSpd = -s.twinkleSpd;
+          if (twinkle > 0) {
+            s.alpha += s.twinkleSpd;
+            if (s.alpha > 1 || s.alpha < 0.2) s.twinkleSpd = -s.twinkleSpd;
+          }
         }
 
         let currentAlpha = Math.max(0.1, Math.min(1, s.alpha));
@@ -157,13 +163,38 @@ export function Lightfall({
       });
 
       ctx.restore();
+    };
+
+    const render = () => {
+      if (!isVisible || prefersReducedMotion) {
+        isRunning = false;
+        return;
+      }
+      isRunning = true;
+      drawFrame();
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    // Initial draw
+    drawFrame();
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !isRunning && !prefersReducedMotion) {
+          render();
+        } else if (!isVisible && animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          isRunning = false;
+        }
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(canvas);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
       window.removeEventListener('resize', handleResize);
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);

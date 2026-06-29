@@ -15,14 +15,14 @@ const marqueeItems = [...trustItems, ...trustItems];
 const TrustBar = () => {
   return (
     <section className="py-5 bg-white border-y border-brand-border/50 overflow-hidden">
-      <div className="marquee-container">
-        <motion.div
-          className="flex items-center gap-12 animate-marquee w-max"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+      <motion.div
+        className="marquee-container"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="flex items-center gap-12 animate-marquee w-max will-change-transform">
           {marqueeItems.map((item, index) => (
             <div key={index} className="flex items-center gap-3 whitespace-nowrap select-none">
               <item.icon className="w-4 h-4 text-brand-teal flex-shrink-0" aria-hidden="true" />
@@ -33,8 +33,8 @@ const TrustBar = () => {
               )}
             </div>
           ))}
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 };
