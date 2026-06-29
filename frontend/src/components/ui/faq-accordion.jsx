@@ -27,6 +27,7 @@ export function FaqAccordion({
           return (
             <li
               key={index}
+              onMouseEnter={() => setActiveIndex(index)}
               className={cn(
                 "w-full relative transition-all duration-300 ease-in mb-3 rounded-xl overflow-hidden border",
                 isActive ? "border-brand-teal/30 shadow-sm" : "border-gray-200/80"

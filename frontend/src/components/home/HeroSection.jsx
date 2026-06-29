@@ -4,6 +4,7 @@ import { Phone, ArrowRight, Star, ShieldCheck, BadgeCheck, TrendingUp } from 'lu
 import BookingModal from '../consultation/BookingModal';
 import AnimatedRays from '@/components/ui/animated-rays';
 import AnimatedButton from '@/components/ui/animated-button';
+import AnimatedCounter from '@/components/ui/animated-counter';
 
 const HeroSection = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -80,7 +81,7 @@ const HeroSection = () => {
                 </div>
                 <div className="stat-pill !bg-white/5 !border-white/10 !text-white/80">
                   <TrendingUp className="w-3.5 h-3.5 text-brand-green" aria-hidden="true" />
-                  <span className="font-data">10k+</span>
+                  <AnimatedCounter end={10000} formatAsK={true} suffix="+" />
                   <span className="text-white/50 text-xs font-body">Families</span>
                 </div>
               </div>

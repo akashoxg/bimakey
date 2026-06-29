@@ -42,18 +42,36 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-xl shadow-soft border-b border-gray-100/50'
-            : 'bg-brand-navy/80 backdrop-blur-md border-b border-white/5'
+            ? 'bg-white/85 backdrop-blur-xl shadow-sm border-b border-gray-200/50 text-slate-900'
+            : 'bg-gradient-to-b from-brand-navy/80 via-brand-navy/40 to-transparent backdrop-blur-[4px] border-b border-transparent text-white'
         }`}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-container mx-auto px-4 md:px-8">
+        <div className="w-full max-w-[98%] mx-auto px-2 sm:px-6">
           <div className="flex items-center justify-between h-20 md:h-24 gap-4">
-            {/* Left: Desktop Nav Links with LineHoverLink */}
-            <div className="hidden lg:flex items-center gap-6" ref={dropdownRef}>
+            {/* Left: Logo + Brand Name on extreme left */}
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 group"
+              aria-label={`${BRAND.name} — Home`}
+            >
+              <img 
+                src="/logo.png" 
+                alt={`${BRAND.name} Logo`} 
+                className="h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow-md" 
+              />
+              <span className={`font-display font-extrabold text-2xl md:text-3xl tracking-tight ${
+                isScrolled ? 'text-slate-900' : 'text-white drop-shadow-sm'
+              }`}>
+                {BRAND.name}
+              </span>
+            </Link>
+
+            {/* Center: Desktop Nav Links with LineHoverLink */}
+            <div className="hidden lg:flex items-center gap-7" ref={dropdownRef}>
               {NAV_LINKS.map((link) => (
                 <div 
                   key={link.label} 
@@ -64,8 +82,8 @@ const Navbar = () => {
                   <LineHoverLink
                     to={link.href}
                     variant="slide"
-                    className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-200 ${
-                      isScrolled ? 'text-brand-navy hover:text-brand-teal' : 'text-white/90 hover:text-white'
+                    className={`flex items-center gap-1 text-base font-bold tracking-wide transition-colors duration-200 ${
+                      isScrolled ? '!text-slate-900 hover:!text-brand-teal' : '!text-white hover:!text-teal-300 drop-shadow-sm'
                     }`}
                   >
                     <span>{link.label}</span>
@@ -107,7 +125,7 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Center/Left: CTA + Mobile Toggle */}
+            {/* Right: CTA + Mobile Toggle */}
             <div className="flex items-center gap-3">
               <AnimatedButton
                 onClick={() => setBookingOpen(true)}
@@ -128,24 +146,6 @@ const Navbar = () => {
                 <Menu className="w-6 h-6" />
               </button>
             </div>
-
-            {/* Extreme Right: Logo + Brand Name */}
-            <Link
-              to="/"
-              className="flex items-center gap-3 group ml-auto"
-              aria-label={`${BRAND.name} — Home`}
-            >
-              <span className={`font-display font-extrabold text-2xl md:text-3xl tracking-tight ${
-                isScrolled ? 'text-brand-navy' : 'text-white'
-              }`}>
-                {BRAND.name}
-              </span>
-              <img 
-                src="/logo.png" 
-                alt={`${BRAND.name} Logo`} 
-                className="h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-110 drop-shadow-sm" 
-              />
-            </Link>
           </div>
         </div>
       </nav>

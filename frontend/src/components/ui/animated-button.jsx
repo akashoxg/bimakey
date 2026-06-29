@@ -24,9 +24,9 @@ const AnimatedButton = ({
       }}
       className={cn(
         "group inline-flex items-center justify-center px-6 py-3 rounded-xl relative overflow-hidden",
-        "bg-gradient-to-r from-brand-amber to-brand-amber-dark text-white font-display font-bold text-sm md:text-base shadow-cta hover:shadow-cta-hover transition-all duration-300",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-amber focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
-        "[--shine:rgba(255,255,255,0.6)]",
+        "bg-gradient-to-r from-[#0D9488] via-[#14B8A6] to-[#0F766E] text-white font-display font-extrabold text-sm md:text-base shadow-lg shadow-teal-600/30 hover:shadow-teal-500/50 border border-teal-400/30 transition-all duration-300",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+        "[--shine:rgba(255,255,255,0.7)]",
         className
       )}
     >
