@@ -15,20 +15,20 @@ const HeroSection = () => {
         {/* Subtle dot grid overlay */}
         <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
 
-        {/* SideRays Animated Background - Falling Light */}
+        {/* SideRays Animated Background - Falling Light Rays */}
         <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden" aria-hidden="true">
           <SideRays
-            speed={1.5}
+            speed={2.5}
             rayColor1="#14B8A6"
-            rayColor2="#ffffff"
-            intensity={1.5}
-            spread={4}
-            origin="top-left"
-            tilt={-15}
-            saturation={1.2}
-            blend={0.5}
-            falloff={1.2}
-            opacity={0.6}
+            rayColor2="#3B82F6"
+            intensity={2}
+            spread={2}
+            origin="top-right"
+            tilt={0}
+            saturation={1.5}
+            blend={0.75}
+            falloff={1.6}
+            opacity={0.5}
           />
         </div>
 
