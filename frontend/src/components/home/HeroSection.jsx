@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, ArrowRight, Star, ShieldCheck, BadgeCheck, TrendingUp } from 'lucide-react';
 import BookingModal from '../consultation/BookingModal';
-import AnimatedRays from '@/components/ui/animated-rays';
 import AnimatedButton from '@/components/ui/animated-button';
 import AnimatedCounter from '@/components/ui/animated-counter';
+import Lightfall from '@/components/ui/Lightfall';
 
 const HeroSection = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -15,9 +15,28 @@ const HeroSection = () => {
         {/* Subtle dot grid overlay */}
         <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
 
-        {/* Animated Rays Background */}
-        <div className="absolute inset-0 z-0 opacity-80 pointer-events-none overflow-hidden" aria-hidden="true">
-          <AnimatedRays />
+        {/* Lightfall Animated Background */}
+        <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden" aria-hidden="true">
+          <Lightfall
+            colors={['#14B8A6', '#3B82F6', '#64748B']}
+            backgroundColor="#080C14"
+            speed={0.4}
+            streakCount={3}
+            streakWidth={1.2}
+            streakLength={1.2}
+            glow={0.4}
+            density={0.5}
+            twinkle={0.8}
+            zoom={2.5}
+            backgroundGlow={0.25}
+            opacity={0.45}
+            mouseInteraction={true}
+            mouseStrength={0.4}
+            mouseRadius={1.2}
+            color1="#14B8A6"
+            color2="#3B82F6"
+            color3="#64748B"
+          />
         </div>
 
         {/* Floating geometric shapes */}
