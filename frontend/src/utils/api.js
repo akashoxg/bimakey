@@ -2,12 +2,13 @@ import { getWhatsAppUrl } from './constants';
 
 // Supabase Edge Functions URL - Must be explicitly configured via env vars
 // If not configured, the system will fall back to the legacy Express API
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || '';
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const SUPABASE_URL = import.meta.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = import.meta.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || '';
 
 // Check if Supabase is properly configured
-const isSupabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_URL !== '' && 
-  SUPABASE_URL !== 'https://YOUR_PROJECT_REF.supabase.co');
+const isSupabaseConfigured = Boolean(SUPABASE_URL && 
+  SUPABASE_URL !== '' && 
+  !SUPABASE_URL.includes('YOUR_PROJECT_REF'));
 
 // Edge Functions base URL (only if Supabase is configured)
 const FUNCTIONS_URL = isSupabaseConfigured ? `${SUPABASE_URL}/functions/v1` : '';
