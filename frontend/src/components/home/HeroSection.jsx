@@ -55,11 +55,6 @@ const HeroSection = () => {
           />
         </div>
 
-        {/* Floating geometric shapes */}
-        <div className="absolute top-20 right-[15%] w-64 h-64 rounded-full border border-brand-teal/10 animate-float" aria-hidden="true" />
-        <div className="absolute bottom-32 left-[10%] w-40 h-40 rounded-full border border-brand-teal/5 animate-float" style={{ animationDelay: '2s' }} aria-hidden="true" />
-        <div className="absolute top-1/3 right-[8%] w-3 h-3 rounded-full bg-brand-amber/20" aria-hidden="true" />
-        <div className="absolute top-2/3 left-[20%] w-2 h-2 rounded-full bg-brand-teal/20" aria-hidden="true" />
 
         <div className="max-w-container mx-auto px-4 md:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
