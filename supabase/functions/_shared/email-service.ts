@@ -71,7 +71,6 @@ const getCallbackTimeLabel = (time) => {
 function createTransporter() {
   const smtpHost = Deno.env.get('SMTP_HOST') || 'smtp.gmail.com';
   const smtpPort = parseInt(Deno.env.get('SMTP_PORT') || '587', 10);
-  const smtpSecure = Deno.env.get('SMTP_SECURE') === 'true';
   const smtpUser = Deno.env.get('SMTP_USER');
   const smtpPass = Deno.env.get('SMTP_PASS');
 
@@ -79,15 +78,30 @@ function createTransporter() {
     return null;
   }
 
-  return nodemailer.createTransport({
+  // Configure transporter with proper TLS settings for Gmail
+  // Port 587 uses STARTTLS, Port 465 uses SSL
+  const transporterConfig = {
     host: smtpHost,
     port: smtpPort,
-    secure: smtpSecure,
+    secure: smtpPort === 465, // SSL only for port 465
     auth: {
       user: smtpUser,
       pass: smtpPass,
     },
-  });
+  };
+
+  // Add STARTTLS for port 587 (Gmail default)
+  if (smtpPort === 587 || smtpPort === 25) {
+    transporterConfig.requireTLS = true;
+  }
+
+  // Allow self-signed certs (may be needed in some environments)
+  transporterConfig.tls = {
+    rejectUnauthorized: false,
+  };
+
+  console.log('[Edge Email] Creating transporter with port:', smtpPort, 'secure:', transporterConfig.secure);
+  return nodemailer.createTransport(transporterConfig);
 }
 
 export async function sendLeadNotification(lead) {

@@ -21,11 +21,14 @@ export default async function handler(req, res) {
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
         const nodemailer = await import('nodemailer');
+        const smtpPort = parseInt(process.env.SMTP_PORT || '587', 10);
         const transporter = (nodemailer.default || nodemailer).createTransport({
           host: process.env.SMTP_HOST || 'smtp.gmail.com',
-          port: parseInt(process.env.SMTP_PORT || '587', 10),
-          secure: process.env.SMTP_SECURE === 'true',
-          auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+          port: smtpPort,
+          secure: smtpPort === 465, // Use SSL only for port 465
+          auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+          requireTLS: smtpPort === 587 || smtpPort === 25,
+          tls: { rejectUnauthorized: false }
         });
         const adminEmails = (process.env.NOTIFICATION_EMAIL || 'Jitendrapoc@gmail.com').split(',').map(e => e.trim()).filter(Boolean);
         if (data.email && !adminEmails.includes(data.email.trim())) adminEmails.push(data.email.trim());
@@ -38,7 +41,7 @@ export default async function handler(req, res) {
         });
         console.log("Vercel claim notification email sent to:", adminEmails.join(', '));
       } catch (emailErr) {
-        console.error("Vercel claim email sending error:", emailErr.message);
+        console.error("Vercel claim email sending error:", emailErr.message, emailErr.code);
       }
     }
 

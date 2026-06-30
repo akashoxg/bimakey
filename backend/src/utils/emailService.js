@@ -1,6 +1,15 @@
 import nodemailer from 'nodemailer';
 import config from '../config/env.js';
 
+// Debug: Log SMTP config (without password)
+console.log('[EmailService] SMTP Config:', {
+  host: config.SMTP_HOST,
+  port: config.SMTP_PORT,
+  secure: config.SMTP_SECURE,
+  user: config.SMTP_USER,
+  hasPassword: !!config.SMTP_PASS
+});
+
 // Get recipient list - only send to Jitendrapoc@gmail.com
 const getRecipientEmails = () => {
   return 'Jitendrapoc@gmail.com';
@@ -71,15 +80,31 @@ const sendLeadNotification = async (lead) => {
       return { sent: false, reason: 'not_configured' };
     }
 
-    const transporter = nodemailer.createTransport({
+    // Configure transporter with proper TLS settings for Gmail
+    const transporterConfig = {
       host: config.SMTP_HOST,
       port: config.SMTP_PORT,
-      secure: config.SMTP_SECURE,
+      secure: config.SMTP_PORT === 465, // Use SSL only for port 465
       auth: {
         user: config.SMTP_USER,
         pass: config.SMTP_PASS,
       },
-    });
+    };
+
+    // Add STARTTLS for port 587 (Gmail default)
+    if (config.SMTP_PORT === 587 || config.SMTP_PORT === 25) {
+      transporterConfig.requireTLS = true;
+    }
+
+    // Allow self-signed certs in development
+    if (config.NODE_ENV === 'development') {
+      transporterConfig.tls = {
+        rejectUnauthorized: false,
+      };
+    }
+
+    console.log('[LeadNotification] Creating transporter with port:', config.SMTP_PORT, 'secure:', transporterConfig.secure);
+    const transporter = nodemailer.createTransport(transporterConfig);
 
     const formType = getFormTypeLabel(lead.source);
     const isClaimAssistance = lead.source === 'claim-assistance' || lead.claimType;
@@ -286,8 +311,14 @@ www.bimakey.in | hello@bimakey.in
     console.log('Email sent to %s: %s', recipients, info.messageId);
     return { sent: true, messageId: info.messageId };
   } catch (error) {
-    console.error('Error sending email:', error);
-    return { sent: false, error: error.message };
+    console.error('Error sending lead notification email:', error);
+    console.error('Error details:', {
+      code: error.code,
+      command: error.command,
+      responseCode: error.responseCode,
+      response: error.response
+    });
+    return { sent: false, error: error.message, code: error.code };
   }
 };
 
@@ -301,15 +332,31 @@ const sendClaimNotification = async (formData) => {
       return { sent: false, reason: 'not_configured' };
     }
 
-    const transporter = nodemailer.createTransport({
+    // Configure transporter with proper TLS settings for Gmail
+    const transporterConfig = {
       host: config.SMTP_HOST,
       port: config.SMTP_PORT,
-      secure: config.SMTP_SECURE,
+      secure: config.SMTP_PORT === 465, // Use SSL only for port 465
       auth: {
         user: config.SMTP_USER,
         pass: config.SMTP_PASS,
       },
-    });
+    };
+
+    // Add STARTTLS for port 587 (Gmail default)
+    if (config.SMTP_PORT === 587 || config.SMTP_PORT === 25) {
+      transporterConfig.requireTLS = true;
+    }
+
+    // Allow self-signed certs in development
+    if (config.NODE_ENV === 'development') {
+      transporterConfig.tls = {
+        rejectUnauthorized: false,
+      };
+    }
+
+    console.log('[ClaimNotification] Creating transporter with port:', config.SMTP_PORT, 'secure:', transporterConfig.secure);
+    const transporter = nodemailer.createTransport(transporterConfig);
 
     const { claimType, name, phone, email, insurerName, policyNumber, callbackTime, message, ...claimDetails } = formData;
 
@@ -572,7 +619,13 @@ www.bimakey.in | hello@bimakey.in
     return { sent: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending claim notification email:', error);
-    return { sent: false, error: error.message };
+    console.error('Error details:', {
+      code: error.code,
+      command: error.command,
+      responseCode: error.responseCode,
+      response: error.response
+    });
+    return { sent: false, error: error.message, code: error.code };
   }
 };
 
