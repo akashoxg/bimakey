@@ -1,13 +1,9 @@
 import nodemailer from 'npm:nodemailer@6.9.14';
 
-// Get recipient list combining admin notification emails and form submitted personal email
-const getRecipientEmails = (userSubmittedEmail?: string) => {
+// Get recipient list (Admin notification email only)
+const getRecipientEmails = () => {
   const envEmails = Deno.env.get('NOTIFICATION_EMAIL') || 'Jitendrapoc@gmail.com';
-  const adminEmails = envEmails.split(',').map((e: string) => e.trim()).filter(Boolean);
-  if (userSubmittedEmail && !adminEmails.includes(userSubmittedEmail.trim())) {
-    adminEmails.push(userSubmittedEmail.trim());
-  }
-  return adminEmails.join(', ');
+  return envEmails.split(',').map((e: string) => e.trim()).filter(Boolean).join(', ');
 };
 
 // Get form type label
@@ -157,7 +153,7 @@ export async function sendLeadNotification(lead) {
       `;
     }
 
-    const recipients = getRecipientEmails(lead.email);
+    const recipients = getRecipientEmails();
     const mailOptions = {
       from: `"BimaKey Website" <${smtpUser}>`,
       to: recipients,
@@ -296,7 +292,34 @@ www.bimakey.in | hello@bimakey.in
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent to %s: %s', recipients, info.messageId);
+    console.log('Email sent to admin %s: %s', recipients, info.messageId);
+
+    // Send thank you acknowledgement email to User
+    if (lead.email && lead.email.trim()) {
+      await transporter.sendMail({
+        from: `"BimaKey Support" <${smtpUser}>`,
+        to: lead.email.trim(),
+        subject: `Thank you for connecting with BimaKey! 🌱`,
+        html: `
+          <div style="font-family: Arial, sans-serif; padding: 25px; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb;">
+            <div style="background: #1B6B5A; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+              <h2 style="color: #ffffff; margin: 0; font-size: 22px;">Welcome to BimaKey 🌱</h2>
+            </div>
+            <div style="padding: 20px 10px; color: #374151; line-height: 1.6;">
+              <p style="font-size: 16px;">Hi <strong>${lead.name}</strong>,</p>
+              <p>Thanks for reaching out and connecting with BimaKey! We have successfully received your query regarding <strong>${getInsuranceLabel(lead.insurance_type || lead.claim_type)}</strong>.</p>
+              <p>Our expert advisors will review your request and get back to you soon with 100% unbiased recommendations tailored to your needs.</p>
+              <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #1B6B5A;">
+                <p style="margin: 0; font-size: 14px; color: #4b5563;">No spam calls. No hidden commissions. Just honest expert advice.</p>
+              </div>
+              <p style="margin-bottom: 0;">Warm regards,<br/><strong>The BimaKey Team</strong></p>
+            </div>
+          </div>
+        `
+      });
+      console.log('Thank you email sent to user:', lead.email.trim());
+    }
+
     return { sent: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending email:', error);
@@ -403,7 +426,7 @@ export async function sendClaimNotification(formData) {
         break;
     }
 
-    const recipients = getRecipientEmails(email);
+    const recipients = getRecipientEmails();
     const mailOptions = {
       from: `"BimaKey Claim Form" <${smtpUser}>`,
       to: recipients,
@@ -500,7 +523,34 @@ www.bimakey.in | hello@bimakey.in
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Claim notification email sent to %s: %s', recipients, info.messageId);
+    console.log('Claim notification email sent to admin %s: %s', recipients, info.messageId);
+
+    // Send claim request acknowledgement to User
+    if (email && email.trim()) {
+      await transporter.sendMail({
+        from: `"BimaKey Claims Support" <${smtpUser}>`,
+        to: email.trim(),
+        subject: `We have received your claim assistance request! 🔔`,
+        html: `
+          <div style="font-family: Arial, sans-serif; padding: 25px; max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb;">
+            <div style="background: #1B6B5A; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+              <h2 style="color: #ffffff; margin: 0; font-size: 22px;">Claim Request Received 🔔</h2>
+            </div>
+            <div style="padding: 20px 10px; color: #374151; line-height: 1.6;">
+              <p style="font-size: 16px;">Hi <strong>${name}</strong>,</p>
+              <p>Thanks for raising your claim assistance query with BimaKey! We have successfully received your request regarding <strong>${claimInfo.label}</strong>.</p>
+              <p>Our dedicated claims specialists are reviewing your details and will get back to you soon to assist you with the settlement process.</p>
+              <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #1B6B5A;">
+                <p style="margin: 0; font-size: 14px; color: #4b5563;">Need urgent help? Reach our claim desk on WhatsApp at +91 9204946314.</p>
+              </div>
+              <p style="margin-bottom: 0;">Warm regards,<br/><strong>The BimaKey Claims Desk</strong></p>
+            </div>
+          </div>
+        `
+      });
+      console.log('Claim thank you email sent to user:', email.trim());
+    }
+
     return { sent: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending claim notification email:', error);
