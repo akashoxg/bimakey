@@ -18,13 +18,18 @@
   /* Light theme hero mesh background */
   .hero-mesh {
     background-color: #FAFAF8;
-    background-image: 
+    background-image:
       radial-gradient(at 20% 30%, rgba(27, 107, 90, 0.08) 0px, transparent 50%),
       radial-gradient(at 80% 70%, rgba(224, 122, 47, 0.05) 0px, transparent 50%),
       radial-gradient(at 50% 100%, rgba(27, 107, 90, 0.06) 0px, transparent 50%);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     text-wrap: balance;
   }
@@ -58,13 +63,17 @@
     border-radius: 0 0 8px 8px;
     transition: top 0.2s ease;
   }
+
   .skip-link:focus {
     top: 0;
   }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -73,6 +82,7 @@
 }
 
 @layer components {
+
   /* Section divider - thin gradient line */
   .section-divider {
     height: 2px;
@@ -98,6 +108,7 @@
     overflow: hidden;
     box-shadow: 0 4px 32px rgba(27, 107, 90, 0.1);
   }
+
   .glow-border::before {
     content: '';
     position: absolute;
@@ -135,6 +146,7 @@
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
+
   .teal-border-card:hover {
     box-shadow: 0 12px 40px rgba(27, 107, 90, 0.12);
     transform: translateY(-2px);
@@ -169,6 +181,7 @@
     background: #0C1220;
     color: white;
   }
+
   .section-dark-soft {
     background: linear-gradient(180deg, #0C1220 0%, #141E2E 100%);
     color: white;
@@ -186,10 +199,12 @@
     border-top: 3px solid #E11D48;
     background: linear-gradient(to bottom, rgba(225, 29, 72, 0.03), transparent 40px);
   }
+
   .accent-term {
     border-top: 3px solid #2563EB;
     background: linear-gradient(to bottom, rgba(37, 99, 235, 0.03), transparent 40px);
   }
+
   .accent-motor {
     border-top: 3px solid #059669;
     background: linear-gradient(to bottom, rgba(5, 150, 105, 0.03), transparent 40px);
@@ -205,7 +220,7 @@
   /* Hero mesh background */
   .hero-mesh {
     background-color: #0C1220;
-    background-image: 
+    background-image:
       radial-gradient(at 20% 30%, rgba(27, 107, 90, 0.2) 0px, transparent 50%),
       radial-gradient(at 80% 60%, rgba(224, 122, 47, 0.08) 0px, transparent 50%),
       radial-gradient(at 50% 90%, rgba(27, 107, 90, 0.1) 0px, transparent 50%);
@@ -213,11 +228,13 @@
 }
 
 @layer utilities {
+
   /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -256,45 +273,46 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   /* Mobile navigation fixes */
   .mobile-nav-padding {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   /* Card responsive adjustments */
   .responsive-card-padding {
     padding: 1rem;
   }
-  
+
   /* Button responsive sizing */
   .responsive-button {
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
   }
-  
+
   /* Form field mobile optimization */
   .mobile-form-input {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
+    /* Prevents zoom on iOS */
   }
-  
+
   /* Grid gap mobile adjustment */
   .mobile-grid-gap {
     gap: 1rem;
   }
-  
+
   /* Hide non-essential elements on mobile */
   .mobile-hidden {
     display: none;
   }
-  
+
   /* Section padding mobile */
   .mobile-section-py {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
-  
+
   /* Hero text sizing */
   .hero-heading {
     font-size: 2.5rem;
@@ -306,11 +324,11 @@
   .tablet-text-lg {
     font-size: 1.125rem;
   }
-  
+
   .tablet-grid-2 {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .tablet-section-py {
     padding-top: 4rem;
     padding-bottom: 4rem;

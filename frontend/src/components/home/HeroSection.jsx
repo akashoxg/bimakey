@@ -12,9 +12,31 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28 overflow-hidden hero-mesh min-h-[85dvh] sm:min-h-[90dvh] flex items-center bg-brand-bg-primary">
+      <section className="relative pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-36 md:pb-28 overflow-hidden min-h-[85dvh] sm:min-h-[90dvh] flex items-center bg-brand-white">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" 
+          style={{ backgroundImage: "url('/website_background.jpg')" }} 
+          aria-hidden="true" 
+        />
+        {/* White fade overlay so text and components are clearly visible */}
+        <div 
+          className="absolute inset-0 z-0 bg-white/85 backdrop-blur-[3px]" 
+          aria-hidden="true" 
+        />
+        {/* Glowing white radial spotlight behind the text column to ensure crystal clear contrast */}
+        <div 
+          className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.75)_55%,transparent_100%)]" 
+          aria-hidden="true" 
+        />
+        {/* Bottom smooth fade into next section */}
+        <div 
+          className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-brand-white to-transparent z-0" 
+          aria-hidden="true" 
+        />
+
         {/* Subtle dot grid overlay */}
-        <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
+        <div className="absolute inset-0 dot-grid opacity-15 z-0" aria-hidden="true" />
 
         {/* SideRays Animated Background - Falling Light Rays */}
         <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden" aria-hidden="true">
@@ -48,33 +70,33 @@ const HeroSection = () => {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7 max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 border border-brand-teal/20 text-brand-teal text-sm font-semibold mb-8 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 shadow-soft border border-brand-teal/30 text-brand-teal text-sm font-semibold mb-8">
                 <BadgeCheck className="w-4 h-4" aria-hidden="true" />
                 <span>India&rsquo;s Only 100% Unbiased Platform</span>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-brand-navy tracking-tight leading-[1.05] sm:leading-[1.1] mb-4 sm:mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-brand-navy tracking-tight leading-[1.05] sm:leading-[1.1] mb-4 sm:mb-6 drop-shadow-[0_1px_1px_rgba(255,255,255,1)]">
                 Find the Right Insurance.<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-amber">
                   Not the Highest Commission.
                 </span>
               </h1>
 
-              <p className="text-brand-text-secondary text-base sm:text-lg md:text-xl mb-8 sm:mb-10 leading-relaxed max-w-xl font-body">
+              <p className="text-brand-navy/85 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 leading-relaxed max-w-xl font-body font-medium">
                 We compare 150+ health and term plans using a transparent rating methodology. No spam calls. No hidden fees. Just expert advice.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12 items-start sm:items-center">
                 <AnimatedButton
                   onClick={() => setBookingOpen(true)}
-                  className="w-full sm:w-auto text-base py-4 px-8"
+                  className="w-full sm:w-auto text-base py-4 px-8 shadow-card"
                 >
                   <Phone className="w-5 h-5 mr-1 inline" aria-hidden="true" />
                   Book Free Consultation
                 </AnimatedButton>
                 <Link
                   to="/health-insurance/plans"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-brand-teal/20 text-brand-teal font-semibold rounded-xl hover:bg-brand-teal/5 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal/50"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/90 shadow-soft border border-brand-teal/25 text-brand-teal font-semibold rounded-xl hover:bg-brand-teal hover:text-white transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-teal/50"
                 >
                   Compare Plans
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -83,16 +105,16 @@ const HeroSection = () => {
 
               {/* Trust badges strip */}
               <div className="flex flex-wrap items-center gap-3">
-                <div className="stat-pill">
+                <div className="stat-pill !bg-white/95 !shadow-soft !border-brand-teal/25">
                   <Star className="w-3.5 h-3.5 text-brand-amber fill-brand-amber" aria-hidden="true" />
                   <span className="font-data">4.7</span>
                   <span className="text-brand-text-secondary text-xs font-body">Google</span>
                 </div>
-                <div className="stat-pill">
+                <div className="stat-pill !bg-white/95 !shadow-soft !border-brand-teal/25">
                   <ShieldCheck className="w-3.5 h-3.5 text-brand-teal" aria-hidden="true" />
                   <span className="text-xs font-body">Zero Commission</span>
                 </div>
-                <div className="stat-pill">
+                <div className="stat-pill !bg-white/95 !shadow-soft !border-brand-teal/25">
                   <TrendingUp className="w-3.5 h-3.5 text-brand-green" aria-hidden="true" />
                   <AnimatedCounter end={10000} formatAsK={true} suffix="+" />
                   <span className="text-brand-text-secondary text-xs font-body">Families</span>

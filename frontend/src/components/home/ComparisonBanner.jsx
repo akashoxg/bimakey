@@ -83,7 +83,7 @@ const ComparisonBanner = () => {
                   className="bg-brand-bg-subtle rounded-xl p-4 border border-gray-100"
                 >
                   <p className="text-brand-text-secondary text-xs font-medium mb-3 uppercase tracking-wide">{row.feature}</p>
-                  
+
                   <div className="space-y-3">
                     {/* Us */}
                     <div className="flex items-start gap-2">
@@ -95,7 +95,7 @@ const ComparisonBanner = () => {
                         <p className="text-brand-navy text-sm leading-snug">{row.us}</p>
                       </div>
                     </div>
-                    
+
                     {/* Them */}
                     <div className="flex items-start gap-2">
                       <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">

@@ -10,10 +10,10 @@ const FAQSection = () => {
   const generalFaqs = FAQS.filter(faq => faq.category === 'general');
   const filteredFaqs = searchQuery
     ? generalFaqs.filter(
-        faq =>
-          faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+      faq =>
+        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     : generalFaqs;
 
   return (

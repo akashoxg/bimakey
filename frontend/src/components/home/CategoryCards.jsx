@@ -79,11 +79,11 @@ const CategoryCards = () => {
                     {category.stat}
                   </span>
                 </div>
-                
+
                 <h3 className="font-display font-bold text-2xl text-brand-navy mb-3">
                   {category.title}
                 </h3>
-                
+
                 <p className="text-brand-text-secondary mb-6 line-clamp-3">
                   {category.description}
                 </p>

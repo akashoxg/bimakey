@@ -47,14 +47,14 @@ const Footer = () => {
       <div className="max-w-container mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-14 lg:py-16 relative z-10">
         {/* Top Section - Brand + Links */}
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10 mb-8 sm:mb-10 md:mb-12">
-          
+
           {/* Brand Column - Full width on mobile, spans 2 on desktop */}
           <div className="col-span-1 xs:col-span-2 md:col-span-1 lg:col-span-1 sm:mb-4">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <img 
-                src="/logo.png" 
-                alt={`${BRAND.name} Logo`} 
-                className="h-10 md:h-12 w-auto object-contain" 
+              <img
+                src="/logo.png"
+                alt={`${BRAND.name} Logo`}
+                className="h-10 md:h-12 w-auto object-contain"
               />
               <span className="font-display font-extrabold text-xl md:text-2xl tracking-tight">{BRAND.name}</span>
             </Link>
@@ -79,7 +79,7 @@ const Footer = () => {
                 <Mail className="w-4 h-4" aria-hidden="true" />
                 {BRAND.email}
               </a>
-              <a 
+              <a
                 href={getWhatsAppUrl('general')}
                 target="_blank"
                 rel="noopener noreferrer"

@@ -64,9 +64,8 @@ const HowItWorks = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
                     transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className={`relative md:flex md:items-center md:gap-0 ${
-                      isLeft ? '' : 'md:flex-row-reverse'
-                    }`}
+                    className={`relative md:flex md:items-center md:gap-0 ${isLeft ? '' : 'md:flex-row-reverse'
+                      }`}
                   >
                     {/* Content card */}
                     <div className={`md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-0' : 'md:pl-0'}`}>

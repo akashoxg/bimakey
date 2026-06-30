@@ -28,11 +28,11 @@ import TermsOfService from './pages/TermsOfService';
 import NotFound from './pages/NotFound';
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  
+
   return null;
 };
 
