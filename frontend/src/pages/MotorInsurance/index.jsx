@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Car, ArrowRight, ShieldCheck, BookOpen, Truck } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
+import SEO from '../../components/shared/SEO';
 import SectionHeader from '../../components/shared/SectionHeader';
 import PlanRankTable from '../../components/insurance/PlanRankTable';
 import RatingMethodology from '../../components/insurance/RatingMethodology';
@@ -19,6 +20,10 @@ const MotorIndex = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+      <SEO 
+        title="Car & Bike Insurance Comparison | Zero Commission Advisory"
+        description="Compare comprehensive car insurance and two-wheeler bike insurance online. Find best plans with zero depreciation, NCB protection, and 100% free claim assistance."
+      />
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-brand-white">
         {/* Background Image */}
         <div 
@@ -40,8 +45,8 @@ const MotorIndex = () => {
           <Breadcrumb items={[{ label: 'Motor Insurance', href: '/motor-insurance' }]} />
           <div className="mb-4">
             <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-sm"><Car className="w-8 h-8" /></div>
-            <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-navy mb-6">Unbiased Motor Insurance Advisory</h1>
-            <p className="text-xl text-brand-text-secondary max-w-3xl leading-relaxed">Motor insurance is mandatory in India. But choosing the right plan with the right add-ons can save you lakhs during a claim.</p>
+            <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-navy mb-6">Car &amp; Bike Insurance Advisory</h1>
+            <p className="text-xl text-brand-text-secondary max-w-3xl leading-relaxed">Car and two-wheeler bike insurance is mandatory in India. Compare top-ranked motor plans to get maximum coverage, zero depreciation, and instant claim settlement assistance.</p>
           </div>
         </div>
       </section>

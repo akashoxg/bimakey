@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HeartPulse, ArrowRight, ShieldCheck, Stethoscope } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
+import SEO from '../../components/shared/SEO';
 import SectionHeader from '../../components/shared/SectionHeader';
 import PlanRankTable from '../../components/insurance/PlanRankTable';
 import RatingMethodology from '../../components/insurance/RatingMethodology';
@@ -35,6 +36,10 @@ const HealthIndex = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Best Health Insurance Plans India | Compare 150+ Policies"
+        description="Compare top health insurance plans for families and senior citizens. Unbiased ratings, zero commission, and free 24/7 medical claim assistance."
+      />
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-brand-white">
         {/* Background Image */}
         <div 

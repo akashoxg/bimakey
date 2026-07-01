@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import toast from 'react-hot-toast';
 import Breadcrumb from '../components/shared/Breadcrumb';
+import SEO from '../components/shared/SEO';
 import { BRAND, getWhatsAppUrl } from '../utils/constants';
 import { submitClaimForm } from '../utils/api';
 
@@ -945,6 +946,10 @@ const ClaimAssistance = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <SEO 
+        title="Insurance Claim Assistance | Free Help for Health, Car & Life Claims"
+        description="Get expert insurance claim assistance for health insurance claims, car accident claims, bike insurance claims, and life insurance settlements — 100% free."
+      />
       {/* Hero */}
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-brand-white">
         {/* Background Image */}

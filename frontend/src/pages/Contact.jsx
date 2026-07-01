@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import toast from 'react-hot-toast';
 import Breadcrumb from '../components/shared/Breadcrumb';
+import SEO from '../components/shared/SEO';
 import { BRAND, INSURANCE_TYPES, getWhatsAppUrl } from '../utils/constants';
 import { submitLead } from '../utils/api';
 
@@ -61,6 +62,10 @@ const Contact = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <SEO 
+        title="Contact BimaKey Experts | Free Insurance Consultation"
+        description="Book a free consultation with expert advisors for health insurance, car insurance, bike insurance, or immediate claim assistance."
+      />
       {/* Hero */}
       <section className="relative pt-24 pb-8 sm:pt-28 md:pt-36 sm:pb-12 md:pb-16 overflow-hidden bg-brand-white">
         {/* Background Image */}

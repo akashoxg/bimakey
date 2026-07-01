@@ -3,6 +3,7 @@ import { ShieldCheck, Heart, Award, Scale, Phone, ArrowRight } from 'lucide-reac
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/shared/Breadcrumb';
+import SEO from '../components/shared/SEO';
 import SectionHeader from '../components/shared/SectionHeader';
 import BookingModal from '../components/consultation/BookingModal';
 import { BRAND } from '../utils/constants';
@@ -31,6 +32,10 @@ const About = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <SEO 
+        title="About BimaKey | India's Only Unbiased Insurance Platform"
+        description="Learn how BimaKey offers zero-commission insurance advice for health, car, bike, and term insurance with lifelong claim assistance."
+      />
       {/* Hero */}
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-brand-white">
         {/* Background Image */}

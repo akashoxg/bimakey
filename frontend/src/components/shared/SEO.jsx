@@ -11,13 +11,13 @@ const SEO = ({ title, description, image, noIndex = false }) => {
   const fullUrl = `${baseUrl}${location.pathname}`;
   
   const defaults = {
-    title: 'BimaKey — India\'s Only 100% Unbiased Insurance Platform',
-    description: 'Compare 150+ insurance plans with transparent ratings. Health, term life & motor insurance. Free expert consultations. Zero insurer commissions.',
-    image: `${baseUrl}/og-image.png`,
+    title: 'BimaKey — India\'s #1 Unbiased Insurance Comparison & Claim Assistance Platform',
+    description: 'Compare 150+ health insurance, car insurance, bike insurance & term life plans. Get 100% free insurance claim assistance and expert advice with zero commission.',
+    image: `${baseUrl}/logo.png`,
   };
 
   const seo = {
-    title: title ? `${title} | BimaKey` : defaults.title,
+    title: title ? (title.includes('BimaKey') ? title : `${title} | BimaKey`) : defaults.title,
     description: description || defaults.description,
     image: image || defaults.image,
     url: fullUrl,
@@ -46,7 +46,7 @@ const SEO = ({ title, description, image, noIndex = false }) => {
 
     // Standard meta tags
     updateMeta('description', seo.description);
-    updateMeta('keywords', 'insurance, health insurance, term insurance, motor insurance, unbiased advisory, BimaKey, India');
+    updateMeta('keywords', 'bima insurance, bimakey, car insurance, bike insurance, two wheeler insurance, health insurance, term insurance, life insurance, insurance claim assistance, free claim help, zero commission insurance, India insurance comparison, best insurance advisor');
     
     // Open Graph tags
     updateMeta('og:title', seo.title, true);
@@ -68,7 +68,7 @@ const SEO = ({ title, description, image, noIndex = false }) => {
       updateMeta('robots', 'noindex, nofollow');
       updateMeta('googlebot', 'noindex, nofollow');
     } else {
-      updateMeta('robots', 'index, follow');
+      updateMeta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
       updateMeta('googlebot', 'index, follow');
     }
 
@@ -80,6 +80,61 @@ const SEO = ({ title, description, image, noIndex = false }) => {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', seo.url);
+
+    // Inject Schema.org JSON-LD Structured Data for search engine rich results
+    let scriptTag = document.querySelector('script[id="json-ld-seo"]');
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.setAttribute('id', 'json-ld-seo');
+      scriptTag.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(scriptTag);
+    }
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${baseUrl}/#organization`,
+          "name": "BimaKey Insurance Advisory",
+          "alternateName": ["Bima Insurance", "BimaKey", "BimaKey India"],
+          "url": baseUrl,
+          "logo": `${baseUrl}/logo.png`,
+          "description": "India's only 100% unbiased insurance comparison and claim assistance platform for health, car, bike, and term insurance.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-9717427154",
+            "contactType": "customer service",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Hindi"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${baseUrl}/#website`,
+          "url": baseUrl,
+          "name": "BimaKey",
+          "description": seo.description,
+          "publisher": {
+            "@id": `${baseUrl}/#organization`
+          }
+        },
+        {
+          "@type": "Service",
+          "name": "Insurance Comparison & Claim Assistance",
+          "provider": {
+            "@id": `${baseUrl}/#organization`
+          },
+          "serviceType": ["Health Insurance Advisory", "Car Insurance Advisory", "Bike Insurance Advisory", "Term Insurance Advisory", "Insurance Claim Assistance"],
+          "areaServed": {
+            "@type": "Country",
+            "name": "India"
+          }
+        }
+      ]
+    };
+
+    scriptTag.textContent = JSON.stringify(structuredData);
 
   }, [seo.title, seo.description, seo.image, seo.url, noIndex]);
 

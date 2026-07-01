@@ -104,23 +104,31 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- Claim Assistance -->
+  <url>
+    <loc>https://bimakey.in/claim-assistance</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
   <!-- Other Pages -->
   <url>
     <loc>https://bimakey.in/experts</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://bimakey.in/about</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://bimakey.in/contact-us</loc>
-    <lastmod>2026-06-29</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

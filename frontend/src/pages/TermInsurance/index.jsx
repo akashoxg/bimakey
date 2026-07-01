@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Shield, ArrowRight, ShieldCheck, BookOpen, Users } from 'lucide-react';
 import Breadcrumb from '../../components/shared/Breadcrumb';
+import SEO from '../../components/shared/SEO';
 import SectionHeader from '../../components/shared/SectionHeader';
 import PlanRankTable from '../../components/insurance/PlanRankTable';
 import RatingMethodology from '../../components/insurance/RatingMethodology';
@@ -20,6 +21,10 @@ const TermIndex = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+      <SEO 
+        title="Term Life Insurance Advisory | Compare Top Protection Plans"
+        description="Compare affordable term life insurance policies with high claim settlement ratios. Get expert, zero-commission guidance."
+      />
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-brand-white">
         {/* Background Image */}
         <div 

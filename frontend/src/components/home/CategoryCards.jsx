@@ -33,16 +33,16 @@ const categories = [
   },
   {
     id: 'motor',
-    title: 'Motor Insurance',
-    description: 'Protect your car or two-wheeler against accidents, theft, and third-party liabilities.',
+    title: 'Car & Bike Insurance',
+    description: 'Compare top car and two-wheeler bike insurance plans. Save up to 85% with zero commission and instant claim settlement.',
     icon: Car,
     accentClass: 'accent-motor',
     iconBg: 'bg-emerald-50',
     iconColor: 'text-emerald-500',
     hoverShadow: 'hover:shadow-[0_12px_40px_rgba(5,150,105,0.1)]',
     href: '/motor-insurance',
-    stat: 'Zero depreciation',
-    features: ['24/7 Roadside assist', 'Engine protection', 'Quick claim settlement'],
+    stat: 'Save up to 85%',
+    features: ['Zero depreciation cover', 'Free claim assistance', '24/7 Roadside assist'],
   },
 ];
 
