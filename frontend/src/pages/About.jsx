@@ -32,8 +32,23 @@ const About = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Hero */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-brand-teal-light/30 to-transparent relative overflow-hidden">
-        <div className="absolute inset-0 dot-grid opacity-30" aria-hidden="true" />
+      <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-brand-white">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" 
+          style={{ backgroundImage: "url('/website_background.jpg')" }} 
+          aria-hidden="true" 
+        />
+        <div 
+          className="absolute inset-0 z-0 bg-white/65 backdrop-blur-[2px]" 
+          aria-hidden="true" 
+        />
+        <div 
+          className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.80)_0%,rgba(255,255,255,0.40)_60%,transparent_100%)]" 
+          aria-hidden="true" 
+        />
+        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-brand-white to-transparent z-0" aria-hidden="true" />
+        <div className="absolute inset-0 dot-grid opacity-20 z-0" aria-hidden="true" />
         <div className="max-w-container mx-auto px-4 md:px-8 relative z-10">
           <Breadcrumb items={[{ label: 'About Us', href: '/about' }]} />
           <div className="max-w-3xl">

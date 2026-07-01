@@ -19,14 +19,14 @@ const HeroSection = () => {
           style={{ backgroundImage: "url('/website_background.jpg')" }} 
           aria-hidden="true" 
         />
-        {/* White fade overlay so text and components are clearly visible */}
+        {/* White fade overlay so text and components are clearly visible while letting background show through */}
         <div 
-          className="absolute inset-0 z-0 bg-white/85 backdrop-blur-[3px]" 
+          className="absolute inset-0 z-0 bg-white/55 backdrop-blur-[2px]" 
           aria-hidden="true" 
         />
         {/* Glowing white radial spotlight behind the text column to ensure crystal clear contrast */}
         <div 
-          className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.96)_0%,rgba(255,255,255,0.75)_55%,transparent_100%)]" 
+          className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.75)_0%,rgba(255,255,255,0.35)_55%,transparent_100%)]" 
           aria-hidden="true" 
         />
         {/* Bottom smooth fade into next section */}

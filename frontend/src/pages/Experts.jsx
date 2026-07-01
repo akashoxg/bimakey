@@ -163,28 +163,49 @@ const Experts = () => {
         description="Connect with certified insurance advisors at BimaKey. Get personalized guidance on health, term, and motor insurance from our experienced team."
       />
 
-      <div className="pt-24 pb-16 min-h-screen bg-gradient-to-b from-brand-teal-light/30 to-white">
-        <div className="max-w-container mx-auto px-4 md:px-8">
-          {/* Hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16 max-w-3xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-brand-teal text-sm font-semibold mb-6">
-              <Heart className="w-4 h-4" />
-              <span>Meet Our Advisors</span>
-            </div>
-            <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-navy mb-6">
-              Expert Guidance,<br />
-              <span className="text-brand-teal">Every Step of the Way</span>
-            </h1>
-            <p className="text-lg text-brand-text-secondary leading-relaxed">
-              Our team of certified insurance advisors brings decades of combined experience. 
-              Unlike agents who earn commissions, our experts are committed to finding the 
-              right coverage for your needs — not the most expensive plan.
-            </p>
-          </motion.div>
+      <div className="min-h-screen">
+        <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden bg-brand-white">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" 
+            style={{ backgroundImage: "url('/website_background.jpg')" }} 
+            aria-hidden="true" 
+          />
+          <div 
+            className="absolute inset-0 z-0 bg-white/65 backdrop-blur-[2px]" 
+            aria-hidden="true" 
+          />
+          <div 
+            className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.80)_0%,rgba(255,255,255,0.40)_60%,transparent_100%)]" 
+            aria-hidden="true" 
+          />
+          <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-brand-white to-transparent z-0" aria-hidden="true" />
+          <div className="absolute inset-0 dot-grid opacity-20 z-0" aria-hidden="true" />
+          <div className="max-w-container mx-auto px-4 md:px-8 relative z-10">
+            {/* Hero */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center max-w-3xl mx-auto"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-soft border border-brand-teal/20 text-brand-teal text-sm font-semibold mb-6">
+                <Heart className="w-4 h-4" />
+                <span>Meet Our Advisors</span>
+              </div>
+              <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-navy mb-6">
+                Expert Guidance,<br />
+                <span className="text-brand-teal">Every Step of the Way</span>
+              </h1>
+              <p className="text-lg text-brand-text-secondary leading-relaxed">
+                Our team of certified insurance advisors brings decades of combined experience. 
+                Unlike agents who earn commissions, our experts are committed to finding the 
+                right coverage for your needs — not the most expensive plan.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        <div className="max-w-container mx-auto px-4 md:px-8 pt-12">
 
           {/* Stats Bar */}
           <motion.div

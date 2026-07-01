@@ -19,11 +19,27 @@ const MotorIndex = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-      <section className="pt-28 pb-12 md:pt-36 md:pb-16 bg-gradient-to-b from-emerald-50/50 to-transparent">
-        <div className="max-w-container mx-auto px-4 md:px-8">
+      <section className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-brand-white">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" 
+          style={{ backgroundImage: "url('/website_background.jpg')" }} 
+          aria-hidden="true" 
+        />
+        <div 
+          className="absolute inset-0 z-0 bg-white/65 backdrop-blur-[2px]" 
+          aria-hidden="true" 
+        />
+        <div 
+          className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(255,255,255,0.80)_0%,rgba(255,255,255,0.40)_60%,transparent_100%)]" 
+          aria-hidden="true" 
+        />
+        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-brand-white to-transparent z-0" aria-hidden="true" />
+        <div className="absolute inset-0 dot-grid opacity-20 z-0" aria-hidden="true" />
+        <div className="max-w-container mx-auto px-4 md:px-8 relative z-10">
           <Breadcrumb items={[{ label: 'Motor Insurance', href: '/motor-insurance' }]} />
-          <div className="mb-12">
-            <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center mb-6"><Car className="w-8 h-8" /></div>
+          <div className="mb-4">
+            <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-sm"><Car className="w-8 h-8" /></div>
             <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-navy mb-6">Unbiased Motor Insurance Advisory</h1>
             <p className="text-xl text-brand-text-secondary max-w-3xl leading-relaxed">Motor insurance is mandatory in India. But choosing the right plan with the right add-ons can save you lakhs during a claim.</p>
           </div>
